@@ -155,7 +155,7 @@ var app = new Vue({
 				'options': [
 				
 				]
-			}
+			},
 			'phone': {
 				'plans': [
 					
