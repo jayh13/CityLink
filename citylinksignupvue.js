@@ -1,7 +1,7 @@
 var app = new Vue({
 	el: '#page-main',
 	data: {
-		'order' = {
+		'order': {
 			'servicetype': '',
 			'serviceaddress': '',
 			'firstname': '',
@@ -13,7 +13,7 @@ var app = new Vue({
 			'cable': undefined,
 			'phone': undefined
 		},
-		'services' = {
+		'services': {
 			'internet': {
 				'plans': [
 					{
