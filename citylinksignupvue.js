@@ -236,11 +236,11 @@ var app = new Vue({
 		'working-on': undefined
 	},
 	created: function() {
-		var internet = app.getUrlParameter('internet');
-		var cable = app.getUrlParameter('cable');
-		var phone = app.getUrlParameter('phine');
-		if (app.getUrlParameter('address') !== '')
-			order.serviceaddress = app.getUrlParameter('address');
+		var internet = this.getUrlParameter('internet');
+		var cable = this.getUrlParameter('cable');
+		var phone = this.getUrlParameter('phine');
+		if (this.getUrlParameter('address') !== '')
+			order.serviceaddress = this.getUrlParameter('address');
 		if (internet) {
 			ShowInternet();
 		} else if (cable) {
@@ -267,6 +267,15 @@ var app = new Vue({
 		}
 	},
 	methods: {
+		ShowInternet: function() {
+			
+		},
+		ShowCable: function() {
+		},
+		ShowPhone: function() {
+		},
+		ShowNone: function() {
+		},
 		ShowHideState: function(name, value) {
 			if (!(name in state))
 				throw "The ShowHideState name does not exist in the state object.";
