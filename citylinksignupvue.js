@@ -3,15 +3,21 @@ var app = new Vue({
 	data: {
 		'order': {
 			'servicetype': '',
-			'serviceaddress': '',
+			'serviceaddress': 'Unknown',
 			'firstname': '',
 			'lastname': '',
 			'email': '',
 			'phone': '',
 			'utilitynumber': '',
-			'internet': undefined,
-			'cable': undefined,
-			'phone': undefined
+			'internet': {
+				'status': 'unordered',
+			},
+			'cable': {
+				'status': 'unordered',
+			},
+			'phone': {
+				'status': 'unordered',
+			}
 		},
 		'services': {
 			'internet': {
@@ -166,12 +172,123 @@ var app = new Vue({
 			}
 		},
 		'state': {
-			'internet': 'none',
-			'cable': 'none',
-			'phone': 'none'
-		}
+			'signup-service-list-internet': 'block',
+			  'service-option-status-selected-internet': 'none',
+			  'service-option-status-internet': 'block',
+			  'service-item-intro-internet': 'block',
+			  'bandwidth-calculator': 'block',
+			  'service-item-options-internet': 'block',
+			  'service-item-footer-internet': 'block',
+			  'package-select-internet': 'none';
+			'signup-service-list-cable': 'none',
+			  'service-option-status-selected-cable': 'none',
+			  'service-option-status-cable': 'block',
+			  'service-item-intro-cable': 'block',
+			  'service-item-options-cable': 'block',
+			  'service-item-footer-cable': 'flex',
+			  'package-select-cable': 'none',
+			'signup-service-list-phone': 'none',
+			  'service-option-status-selected-phone': 'none',
+			  'service-option-status-phone': 'block',
+			  'service-item-intro-phone': 'block',
+			  'service-item-options-phone': 'block',
+			  'service-item-footer-phone': 'flex',
+			  'package-select-phone': 'none',
+			'signup-service-bundle-for-savings': 'none',
+				'bfs-item-layout-2-col-internet': 'none',
+				'bfs-item-layout-2-col-cable': 'none',
+				'bfs-item-layout-2-col-phone': 'none',
+			'signup-service-review-your-request': 'none',
+			'signup-service-sign-me-up': 'none',
+		},
+		'working-on': undefined
 	},
 	created: function() {
-	
+		var internet = getUrlParameter('internet');
+		var cable = getUrlParameter('cable');
+		var phone = getUrlParameter('phine');
+		if (getUrlParameter('address') !== '')
+			order.serviceaddress = getUrlParameter('address');
+		if (internet) {
+			ShowInternet();
+		} else if (cable) {
+			ShowCable();
+		} else if (phone) {
+			ShowPhone();
+		} else {
+			ShowNone();
+		}
 	}
+	
+	function ShowHideState(name, value) {
+		if (!(name in state))
+			throw "The ShowHideState name does not exist in the state object.";
+		if ((['show','hide']).includes(value) === false)
+			throw "The ShowHideState value must be show or hide.";
+		if ((['signup-service-list-internet',
+				'service-option-status-selected-internet',
+				'service-option-status-internet',
+				'service-item-intro-internet',
+				'bandwidth-calculator',
+				'service-item-options-internet',
+				'package-select-internet',
+			'signup-service-list-cable',
+				'service-option-status-selected-cable',
+				'service-option-status-cable',
+				'service-item-intro-cable',
+				'service-item-options-cable',
+				'package-select-cable',
+			'signup-service-list-phone',
+				'service-option-status-selected-phone',
+				'service-option-status-phone',
+				'service-item-intro-phone',
+				'service-item-options-phone',
+				'package-select-phone',
+			'signup-service-bundle-for-savings',
+			'signup-service-review-your-request',
+			'signup-service-sign-me-up']).includes(name)) {
+			if (value == 'show')
+				state[name] = 'block';
+			else
+				state[name] = 'none';
+		} else if ((['bfs-item-layout-2-col-internet',
+			'bfs-item-layout-2-col-cable',
+			'bfs-item-layout-2-col-phone']).includes(name)) {
+			if (value == 'show')
+				state[name] = 'grid';
+			else
+				state[name] = 'none';
+			
+		} else if ((['service-item-footer-internet',
+			'service-item-footer-cable',
+			'service-item-footer-phone']).includes(name) {
+			if (value == 'show')
+				state[name] = 'flex';
+			else
+				state[name] = 'none';
+		}
+	}
+	
+	function isBundled() {
+		var cnt = 0;
+		if (order.internet.status !== 'unordered')
+			cnt++;
+		if (order.cable.status !== 'unordered')
+			cnt++;
+		if (order.phone.status !== 'unordered')
+			cnt++;
+		if (cnt > 1)
+			return true;
+		else
+			return false;
+	}
+	
+	
+	// Utility functions
+	function getUrlParameter(name) {
+		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+		var results = regex.exec(location.search);
+		return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	};
 })
