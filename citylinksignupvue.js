@@ -172,6 +172,37 @@ var app = new Vue({
 			}
 		},
 		'state': {
+			'signup-service-list-internet': true,
+			  'service-option-status-selected-internet': false,
+			  'service-option-status-internet': true,
+			  'service-item-intro-internet': true,
+			  'bandwidth-calculator': true,
+			  'service-item-options-internet': true,
+			  'service-item-footer-internet': true,
+			  'package-select-internet': false,
+			'signup-service-list-cable': false,
+			  'service-option-status-selected-cable': false,
+			  'service-option-status-cable': true,
+			  'service-item-intro-cable': true,
+			  'service-item-options-cable': true,
+			  'service-item-footer-cable': true,
+			  'package-select-cable': false,
+			'signup-service-list-phone': false,
+			  'service-option-status-selected-phone': false,
+			  'service-option-status-phone': true,
+			  'service-item-intro-phone': true,
+			  'service-item-options-phone': true,
+			  'service-item-footer-phone': true,
+			  'package-select-phone': false,
+			'signup-service-bundle-for-savings': false,
+				'bfs-item-layout-2-col-internet': false,
+				'bfs-item-layout-2-col-cable': false,
+				'bfs-item-layout-2-col-phone': false,
+			'signup-service-review-your-request': false,
+			'signup-service-sign-me-up': false,
+				'smu-content-form': false
+		},
+		'state-old': {
 			'signup-service-list-internet': 'block',
 			  'service-option-status-selected-internet': 'none',
 			  'service-option-status-internet': 'block',
@@ -200,6 +231,7 @@ var app = new Vue({
 				'bfs-item-layout-2-col-phone': 'none',
 			'signup-service-review-your-request': 'none',
 			'signup-service-sign-me-up': 'none',
+				'smu-content-form': 'none',
 		},
 		'working-on': undefined
 	},
@@ -261,7 +293,8 @@ var app = new Vue({
 					'package-select-phone',
 				'signup-service-bundle-for-savings',
 				'signup-service-review-your-request',
-				'signup-service-sign-me-up']).includes(name)) {
+				'signup-service-sign-me-up',
+					'smu-content-form']).includes(name)) {
 				if (value == 'show')
 					state[name] = 'block';
 				else
@@ -282,7 +315,7 @@ var app = new Vue({
 				else
 					state[name] = 'none';
 			}
-		};
+		},
 		
 		
 		// Utility functions
@@ -291,6 +324,6 @@ var app = new Vue({
 			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 			var results = regex.exec(location.search);
 			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-		};
+		},
 	}
 })
