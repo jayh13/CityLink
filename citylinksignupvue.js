@@ -220,7 +220,7 @@ var app = new Vue({
 		}
 	}
 	
-	function ShowHideState(name, value) {
+	ShowHideState: function(name, value) {
 		if (!(name in state))
 			throw "The ShowHideState name does not exist in the state object.";
 		if ((['show','hide']).includes(value) === false)
@@ -269,7 +269,7 @@ var app = new Vue({
 		}
 	}
 	
-	function isBundled() {
+	isBundled: function() {
 		var cnt = 0;
 		if (order.internet.status !== 'unordered')
 			cnt++;
@@ -285,7 +285,7 @@ var app = new Vue({
 	
 	
 	// Utility functions
-	function getUrlParameter(name) {
+	getUrlParameter: function(name) {
 		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
 		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 		var results = regex.exec(location.search);
