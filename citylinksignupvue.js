@@ -236,11 +236,11 @@ var app = new Vue({
 		'working-on': undefined
 	},
 	created: function() {
-		var internet = getUrlParameter('internet');
-		var cable = getUrlParameter('cable');
-		var phone = getUrlParameter('phine');
-		if (getUrlParameter('address') !== '')
-			order.serviceaddress = getUrlParameter('address');
+		var internet = app.getUrlParameter('internet');
+		var cable = app.getUrlParameter('cable');
+		var phone = app.getUrlParameter('phine');
+		if (app.getUrlParameter('address') !== '')
+			order.serviceaddress = app.getUrlParameter('address');
 		if (internet) {
 			ShowInternet();
 		} else if (cable) {
