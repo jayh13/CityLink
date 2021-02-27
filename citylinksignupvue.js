@@ -179,7 +179,7 @@ var app = new Vue({
 			  'bandwidth-calculator': 'block',
 			  'service-item-options-internet': 'block',
 			  'service-item-footer-internet': 'block',
-			  'package-select-internet': 'none';
+			  'package-select-internet': 'none',
 			'signup-service-list-cable': 'none',
 			  'service-option-status-selected-cable': 'none',
 			  'service-option-status-cable': 'block',
