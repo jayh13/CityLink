@@ -218,77 +218,79 @@ var app = new Vue({
 		} else {
 			ShowNone();
 		}
-	}
-	
-	ShowHideState: function(name, value) {
-		if (!(name in state))
-			throw "The ShowHideState name does not exist in the state object.";
-		if ((['show','hide']).includes(value) === false)
-			throw "The ShowHideState value must be show or hide.";
-		if ((['signup-service-list-internet',
-				'service-option-status-selected-internet',
-				'service-option-status-internet',
-				'service-item-intro-internet',
-				'bandwidth-calculator',
-				'service-item-options-internet',
-				'package-select-internet',
-			'signup-service-list-cable',
-				'service-option-status-selected-cable',
-				'service-option-status-cable',
-				'service-item-intro-cable',
-				'service-item-options-cable',
-				'package-select-cable',
-			'signup-service-list-phone',
-				'service-option-status-selected-phone',
-				'service-option-status-phone',
-				'service-item-intro-phone',
-				'service-item-options-phone',
-				'package-select-phone',
-			'signup-service-bundle-for-savings',
-			'signup-service-review-your-request',
-			'signup-service-sign-me-up']).includes(name)) {
-			if (value == 'show')
-				state[name] = 'block';
+	},
+	computed: {
+		isBundled: function() {
+			var cnt = 0;
+			if (order.internet.status !== 'unordered')
+				cnt++;
+			if (order.cable.status !== 'unordered')
+				cnt++;
+			if (order.phone.status !== 'unordered')
+				cnt++;
+			if (cnt > 1)
+				return true;
 			else
-				state[name] = 'none';
-		} else if ((['bfs-item-layout-2-col-internet',
-			'bfs-item-layout-2-col-cable',
-			'bfs-item-layout-2-col-phone']).includes(name)) {
-			if (value == 'show')
-				state[name] = 'grid';
-			else
-				state[name] = 'none';
-			
-		} else if ((['service-item-footer-internet',
-			'service-item-footer-cable',
-			'service-item-footer-phone']).includes(name) {
-			if (value == 'show')
-				state[name] = 'flex';
-			else
-				state[name] = 'none';
+				return false;
+		}
+	},
+	methods: {
+		ShowHideState: function(name, value) {
+			if (!(name in state))
+				throw "The ShowHideState name does not exist in the state object.";
+			if ((['show','hide']).includes(value) === false)
+				throw "The ShowHideState value must be show or hide.";
+			if ((['signup-service-list-internet',
+					'service-option-status-selected-internet',
+					'service-option-status-internet',
+					'service-item-intro-internet',
+					'bandwidth-calculator',
+					'service-item-options-internet',
+					'package-select-internet',
+				'signup-service-list-cable',
+					'service-option-status-selected-cable',
+					'service-option-status-cable',
+					'service-item-intro-cable',
+					'service-item-options-cable',
+					'package-select-cable',
+				'signup-service-list-phone',
+					'service-option-status-selected-phone',
+					'service-option-status-phone',
+					'service-item-intro-phone',
+					'service-item-options-phone',
+					'package-select-phone',
+				'signup-service-bundle-for-savings',
+				'signup-service-review-your-request',
+				'signup-service-sign-me-up']).includes(name)) {
+				if (value == 'show')
+					state[name] = 'block';
+				else
+					state[name] = 'none';
+			} else if ((['bfs-item-layout-2-col-internet',
+				'bfs-item-layout-2-col-cable',
+				'bfs-item-layout-2-col-phone']).includes(name)) {
+				if (value == 'show')
+					state[name] = 'grid';
+				else
+					state[name] = 'none';
+				
+			} else if ((['service-item-footer-internet',
+				'service-item-footer-cable',
+				'service-item-footer-phone']).includes(name) {
+				if (value == 'show')
+					state[name] = 'flex';
+				else
+					state[name] = 'none';
+			}
+		}
+		
+		
+		// Utility functions
+		getUrlParameter: function(name) {
+			name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+			var results = regex.exec(location.search);
+			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 		}
 	}
-	
-	isBundled: function() {
-		var cnt = 0;
-		if (order.internet.status !== 'unordered')
-			cnt++;
-		if (order.cable.status !== 'unordered')
-			cnt++;
-		if (order.phone.status !== 'unordered')
-			cnt++;
-		if (cnt > 1)
-			return true;
-		else
-			return false;
-	}
-	
-	
-	// Utility functions
-	getUrlParameter: function(name) {
-		name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-		var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-		var results = regex.exec(location.search);
-		return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-	};
 })
