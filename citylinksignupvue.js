@@ -242,13 +242,13 @@ var app = new Vue({
 		if (this.getUrlParameter('address') !== '')
 			order.serviceaddress = this.getUrlParameter('address');
 		if (internet) {
-			ShowInternet();
+			this.ShowInternet();
 		} else if (cable) {
-			ShowCable();
+			this.ShowCable();
 		} else if (phone) {
-			ShowPhone();
+			this.ShowPhone();
 		} else {
-			ShowNone();
+			this.ShowNone();
 		}
 	},
 	computed: {
