@@ -276,7 +276,7 @@ var app = new Vue({
 				
 			} else if ((['service-item-footer-internet',
 				'service-item-footer-cable',
-				'service-item-footer-phone']).includes(name) {
+				'service-item-footer-phone']).includes(name)) {
 				if (value == 'show')
 					state[name] = 'flex';
 				else
