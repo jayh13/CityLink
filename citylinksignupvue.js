@@ -282,7 +282,7 @@ var app = new Vue({
 				else
 					state[name] = 'none';
 			}
-		},
+		};
 		
 		
 		// Utility functions
@@ -291,6 +291,6 @@ var app = new Vue({
 			var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
 			var results = regex.exec(location.search);
 			return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-		},
+		};
 	}
 })
