@@ -1,3 +1,38 @@
+// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
+document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
+document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
+document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
+document.querySelector('.signup-service-list-internet').setAttribute('v-if', 'state.signupServiceListInternet');
+document.querySelector('.service-option-status-selected-internet').setAttribute('v-if', 'state.serviceOptionStatusSelectedInternet');
+document.querySelector('.service-option-status-internet').setAttribute('v-if', 'state.serviceOptionStatusInternet');
+document.querySelector('.service-item-intro-internet').setAttribute('v-if', 'state.serviceItemIntroInternet');
+document.querySelector('.bandwidth-calculator').setAttribute('v-if', 'state.bandwidthCalculator');
+document.querySelector('.service-item-options-internet').setAttribute('v-if', 'state.serviceItemOptionsInternet');
+document.querySelector('.service-item-footer-internet').setAttribute('v-if', 'state.serviceItemFooterInternet');
+document.querySelector('.package-select-internet').setAttribute('v-if', 'state.packageSelectInternet');
+document.querySelector('.signup-service-list-cable').setAttribute('v-if', 'state.signupServiceListCable');
+document.querySelector('.service-option-status-selected-cable').setAttribute('v-if', 'state.serviceOptionStatusSelectedCable');
+document.querySelector('.service-option-status-cable').setAttribute('v-if', 'state.serviceOptionStatusCable');
+document.querySelector('.service-item-intro-cable').setAttribute('v-if', 'state.serviceItemIntroCable');
+document.querySelector('.service-item-options-cable').setAttribute('v-if', 'state.serviceItemOptionsCable');
+document.querySelector('.service-item-footer-cable').setAttribute('v-if', 'state.serviceItemFooterCable');
+document.querySelector('.package-select-cable').setAttribute('v-if', 'state.packageSelectCable');
+document.querySelector('.signup-service-list-phone').setAttribute('v-if', 'state.signupServiceListPhone');
+document.querySelector('.service-option-status-selected-phone').setAttribute('v-if', 'state.serviceOptionStatusSelectedPhone');
+document.querySelector('.service-option-status-phone').setAttribute('v-if', 'state.serviceOptionStatusPhone');
+document.querySelector('.service-item-intro-phone').setAttribute('v-if', 'state.serviceItemIntroPhone');
+document.querySelector('.service-item-options-phone').setAttribute('v-if', 'state.serviceItemOptionsPhone');
+document.querySelector('.service-item-footer-phone').setAttribute('v-if', 'state.serviceItemFooterPhone');
+document.querySelector('.package-select-phone').setAttribute('v-if', 'state.packageSelectPhone');
+document.querySelector('.signup-service-bundle-for-savings').setAttribute('v-if', 'state.signupServiceBundleForSavings');
+document.querySelector('.bfs-item-layout-2-col-internet').setAttribute('v-if', 'state.bfsItemLayout2ColInternet');
+document.querySelector('.bfs-item-layout-2-col-cable').setAttribute('v-if', 'state.bfsItemLayout2ColCable');
+document.querySelector('.bfs-item-layout-2-col-phone').setAttribute('v-if', 'state.bfsItemLayout2ColPhone');
+document.querySelector('.signup-service-review-your-request').setAttribute('v-if', 'state.signupServiceReviewYourRequest');
+document.querySelector('.signup-service-sign-me-up').setAttribute('v-if', 'state.signupServiceSignMeUp');
+document.querySelector('.smu-content-form').setAttribute('v-if', 'state.smuContentForm');
+
+// Create the Vue.js application
 var app = new Vue({
 	el: '#page-main',
 	data: {
@@ -36,7 +71,7 @@ var app = new Vue({
 							'price': 27,
 							'bundledprice': 23
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 26,
 							'bundledprice': 22
 						},
@@ -56,7 +91,7 @@ var app = new Vue({
 							'price': 41,
 							'bundledprice': 37
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 40,
 							'bundledprice': 36
 						},
@@ -78,7 +113,7 @@ var app = new Vue({
 							'bundledprice': 57,
 							'description': 'Great for small home office and light video conferencng.'
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 60,
 							'bundledprice': 56
 						},
@@ -98,7 +133,7 @@ var app = new Vue({
 							'price': 81,
 							'bundledprice': 77
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 80,
 							'bundledprice': 76,
 							'isMostPopular': true
@@ -121,7 +156,7 @@ var app = new Vue({
 							'bundledprice': 87
 
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 90,
 							'bundledprice': 86
 						},
@@ -142,7 +177,7 @@ var app = new Vue({
 							'bundledprice': 97,
 							'isMostPopular': true
 						},
-						'non-profit': {
+						'nonProfit': {
 							'price': 100,
 							'bundledprice': 96
 						},
@@ -172,68 +207,71 @@ var app = new Vue({
 			}
 		},
 		'state': {
-			'signup-service-list-internet': true,
-			  'service-option-status-selected-internet': false,
-			  'service-option-status-internet': true,
-			  'service-item-intro-internet': true,
-			  'bandwidth-calculator': true,
-			  'service-item-options-internet': true,
-			  'service-item-footer-internet': true,
-			  'package-select-internet': false,
-			'signup-service-list-cable': false,
-			  'service-option-status-selected-cable': false,
-			  'service-option-status-cable': true,
-			  'service-item-intro-cable': true,
-			  'service-item-options-cable': true,
-			  'service-item-footer-cable': true,
-			  'package-select-cable': false,
-			'signup-service-list-phone': false,
-			  'service-option-status-selected-phone': false,
-			  'service-option-status-phone': true,
-			  'service-item-intro-phone': true,
-			  'service-item-options-phone': true,
-			  'service-item-footer-phone': true,
-			  'package-select-phone': false,
-			'signup-service-bundle-for-savings': false,
-				'bfs-item-layout-2-col-internet': false,
-				'bfs-item-layout-2-col-cable': false,
-				'bfs-item-layout-2-col-phone': false,
-			'signup-service-review-your-request': false,
-			'signup-service-sign-me-up': false,
-				'smu-content-form': false
+			'residenceCheckboxField': false,
+			'commercialCheckboxField': false,
+			'nonProfitCheckboxField': false,
+			'signupServiceListInternet': true,
+			  'serviceOptionStatusSelectedInternet': false,
+			  'serviceOptionStatusInternet': true,
+			  'serviceItemIntroInternet': true,
+			  'bandwidthCalculator': true,
+			  'serviceItemOptionsInternet': true,
+			  'serviceItemFooterInternet': true,
+			  'packageSelectInternet': false,
+			'signupServiceListCable': false,
+			  'serviceOptionStatusSelectedCable': false,
+			  'serviceOptionStatusCable': true,
+			  'serviceItemIntroCable': true,
+			  'serviceItemOptionsCable': true,
+			  'serviceItemFooterCable': true,
+			  'packageSelectCable': false,
+			'signupServiceListPhone': false,
+			  'serviceOptionStatusSelectedPhone': false,
+			  'serviceOptionStatusPhone': true,
+			  'serviceItemIntroPhone': true,
+			  'serviceItemOptionsPhone': true,
+			  'serviceItemFooterPhone': true,
+			  'packageSelectPhone': false,
+			'signupServiceBundleFourSavings': false,
+				'bfsItemLayout2ColInternet': false,
+				'bfsItemLayout2ColCable': false,
+				'bfsItemLayout2ColPhone': false,
+			'signupServiceReviewYourRequest': false,
+			'signupServiceSignMeUp': false,
+				'smuContentForm': false
 		},
-		'state-old': {
-			'signup-service-list-internet': 'block',
-			  'service-option-status-selected-internet': 'none',
-			  'service-option-status-internet': 'block',
-			  'service-item-intro-internet': 'block',
-			  'bandwidth-calculator': 'block',
-			  'service-item-options-internet': 'block',
-			  'service-item-footer-internet': 'block',
-			  'package-select-internet': 'none',
-			'signup-service-list-cable': 'none',
-			  'service-option-status-selected-cable': 'none',
-			  'service-option-status-cable': 'block',
-			  'service-item-intro-cable': 'block',
-			  'service-item-options-cable': 'block',
-			  'service-item-footer-cable': 'flex',
-			  'package-select-cable': 'none',
-			'signup-service-list-phone': 'none',
-			  'service-option-status-selected-phone': 'none',
-			  'service-option-status-phone': 'block',
-			  'service-item-intro-phone': 'block',
-			  'service-item-options-phone': 'block',
-			  'service-item-footer-phone': 'flex',
-			  'package-select-phone': 'none',
-			'signup-service-bundle-for-savings': 'none',
-				'bfs-item-layout-2-col-internet': 'none',
-				'bfs-item-layout-2-col-cable': 'none',
-				'bfs-item-layout-2-col-phone': 'none',
-			'signup-service-review-your-request': 'none',
-			'signup-service-sign-me-up': 'none',
-				'smu-content-form': 'none',
+		'stateOld': {
+			'signupServiceListInternet': 'block',
+			  'serviceOptionStatusSelectedInternet': 'none',
+			  'serviceOptionStatusInternet': 'block',
+			  'serviceItemIntroInternet': 'block',
+			  'bandwidthCalculator': 'block',
+			  'serviceItemOptionsInternet': 'block',
+			  'serviceItemFooterInternet': 'block',
+			  'packageSelectInternet': 'none',
+			'signupServiceListCable': 'none',
+			  'serviceOptionStatusSelectedCable': 'none',
+			  'serviceOptionStatusCable': 'block',
+			  'serviceItemIntroCable': 'block',
+			  'serviceItemOptionsCable': 'block',
+			  'serviceItemFooterCable': 'flex',
+			  'packageSelectCable': 'none',
+			'signupServiceListPhone': 'none',
+			  'serviceOptionStatusSelectedPhone': 'none',
+			  'serviceOptionStatusPhone': 'block',
+			  'serviceItemIntroPhone': 'block',
+			  'serviceItemOptionsPhone': 'block',
+			  'serviceItemFooterPhone': 'flex',
+			  'packageSelectPhone': 'none',
+			'signupServiceBundleFourSavings': 'none',
+				'bfsItemLayout2ColInternet': 'none',
+				'bfsItemLayout2ColCable': 'none',
+				'bfsItemLayout2ColPhone': 'none',
+			'signupServiceReviewYourRequest': 'none',
+			'signupServiceSignMeUp': 'none',
+				'smuContentForm': 'none',
 		},
-		'working-on': undefined
+		'workingOn': undefined
 	},
 	created: function() {
 		var internet = this.getUrlParameter('internet');
@@ -281,44 +319,44 @@ var app = new Vue({
 				throw "The ShowHideState name does not exist in the state object.";
 			if ((['show','hide']).includes(value) === false)
 				throw "The ShowHideState value must be show or hide.";
-			if ((['signup-service-list-internet',
-					'service-option-status-selected-internet',
-					'service-option-status-internet',
-					'service-item-intro-internet',
-					'bandwidth-calculator',
-					'service-item-options-internet',
-					'package-select-internet',
-				'signup-service-list-cable',
-					'service-option-status-selected-cable',
-					'service-option-status-cable',
-					'service-item-intro-cable',
-					'service-item-options-cable',
-					'package-select-cable',
-				'signup-service-list-phone',
-					'service-option-status-selected-phone',
-					'service-option-status-phone',
-					'service-item-intro-phone',
-					'service-item-options-phone',
-					'package-select-phone',
-				'signup-service-bundle-for-savings',
-				'signup-service-review-your-request',
-				'signup-service-sign-me-up',
-					'smu-content-form']).includes(name)) {
+			if ((['signupServiceListInternet',
+					'serviceOptionStatusSelectedInternet',
+					'serviceOptionStatusInternet',
+					'serviceItemIntroInternet',
+					'bandwidthCalculator',
+					'serviceItemOptionsInternet',
+					'packageSelectInternet',
+				'signupServiceListCable',
+					'serviceOptionStatusSelectedCable',
+					'serviceOptionStatusCable',
+					'serviceItemIntroCable',
+					'serviceItemOptionsCable',
+					'packageSelectCable',
+				'signupServiceListPhone',
+					'serviceOptionStatusSelectedPhone',
+					'serviceOptionStatusPhone',
+					'serviceItemIntroPhone',
+					'serviceItemOptionsPhone',
+					'packageSelectPhone',
+				'signupServiceBundleForSavings',
+				'signupServiceReviewYourRequest',
+				'signupServiceSignMeUp',
+					'smuContentForm']).includes(name)) {
 				if (value == 'show')
 					state[name] = 'block';
 				else
 					state[name] = 'none';
-			} else if ((['bfs-item-layout-2-col-internet',
-				'bfs-item-layout-2-col-cable',
-				'bfs-item-layout-2-col-phone']).includes(name)) {
+			} else if ((['bfsItemLayout2ColInternet',
+				'bfsItemLayout2ColCable',
+				'bfsItemLayout2ColPhone']).includes(name)) {
 				if (value == 'show')
 					state[name] = 'grid';
 				else
 					state[name] = 'none';
 				
-			} else if ((['service-item-footer-internet',
-				'service-item-footer-cable',
-				'service-item-footer-phone']).includes(name)) {
+			} else if ((['serviceItemFooterInternet',
+				'serviceItemFooterCable',
+				'serviceItemFooterPhone']).includes(name)) {
 				if (value == 'show')
 					state[name] = 'flex';
 				else
