@@ -306,63 +306,188 @@ var app = new Vue({
 	},
 	methods: {
 		ShowInternet: function() {
-			
+			order.internet.status = 'inProgress';
+			if (order.cable.status !== 'ordered')
+				order.cable = { 'status': 'unordered' };
+			if (order.phone.status !== 'ordered')
+				order.phone = { 'status': 'unordered' };
+			ShowHide();
 		},
 		ShowCable: function() {
+			if (order.internet.status !== 'ordered')
+				order.internet = { 'status': 'unordered' };
+			order.cable.status = 'inProgress';
+			if (order.phone.status !== 'ordered')
+				order.phone = { 'status': 'unordered' };
+			ShowHide();
 		},
 		ShowPhone: function() {
+			if (order.internet.status !== 'ordered')
+				order.internet = { 'status': 'unordered' };
+			if (order.cable.status !== 'ordered')
+				order.cable = { 'status': 'unordered' };
+			order.phone.status = 'inProgress';
+			ShowHide();
 		},
 		ShowNone: function() {
+			if (order.internet.status !== 'ordered')
+				order.internet = { 'status': 'unordered' };
+			if (order.cable.status !== 'ordered')
+				order.cable = { 'status': 'unordered' };
+			if (order.phone.status !== 'ordered')
+				order.phone = { 'status': 'unordered' };
+			ShowHide();
 		},
-		ShowHideState: function(name, value) {
-			if (!(name in state))
-				throw "The ShowHideState name does not exist in the state object.";
-			if ((['show','hide']).includes(value) === false)
-				throw "The ShowHideState value must be show or hide.";
-			if ((['signupServiceListInternet',
-					'serviceOptionStatusSelectedInternet',
-					'serviceOptionStatusInternet',
-					'serviceItemIntroInternet',
-					'bandwidthCalculator',
-					'serviceItemOptionsInternet',
-					'packageSelectInternet',
-				'signupServiceListCable',
-					'serviceOptionStatusSelectedCable',
-					'serviceOptionStatusCable',
-					'serviceItemIntroCable',
-					'serviceItemOptionsCable',
-					'packageSelectCable',
-				'signupServiceListPhone',
-					'serviceOptionStatusSelectedPhone',
-					'serviceOptionStatusPhone',
-					'serviceItemIntroPhone',
-					'serviceItemOptionsPhone',
-					'packageSelectPhone',
-				'signupServiceBundleForSavings',
-				'signupServiceReviewYourRequest',
-				'signupServiceSignMeUp',
-					'smuContentForm']).includes(name)) {
-				if (value == 'show')
-					state[name] = 'block';
-				else
-					state[name] = 'none';
-			} else if ((['bfsItemLayout2ColInternet',
-				'bfsItemLayout2ColCable',
-				'bfsItemLayout2ColPhone']).includes(name)) {
-				if (value == 'show')
-					state[name] = 'grid';
-				else
-					state[name] = 'none';
-				
-			} else if ((['serviceItemFooterInternet',
-				'serviceItemFooterCable',
-				'serviceItemFooterPhone']).includes(name)) {
-				if (value == 'show')
-					state[name] = 'flex';
-				else
-					state[name] = 'none';
+		ShowHide: function() {
+			// Internet default
+			state.signupServiceListInternet = false;
+			state.serviceOptionStatusSelectedInternet = true;
+			state.serviceOptionStatusInternet = false;
+			state.serviceItemIntroInternet = false;
+			state.bandwidthCalculator = false;
+			state.serviceItemOptionsInternet = false;
+			state.serviceItemFooterInternet = false;
+			state.packageSelectInternet = false;
+			// Cable default
+			state.signupServiceListCable = false;
+			state.serviceOptionStatusSelectedCable = true;
+			state.serviceOptionStatusCable = false;
+			state.serviceItemIntroCable = false;
+			state.serviceItemOptionsCable = false;
+			state.serviceItemFooterCable = false;
+			state.packageSelectCable = false;
+			// Phone default
+			state.signupServiceListPhone = false;
+			state.serviceOptionStatusSelectedPhone = true;
+			state.serviceOptionStatusPhone = false;
+			state.serviceItemIntroPhone = false;
+			state.serviceItemOptionsPhone = false;
+			state.serviceItemFooterPhone = false;
+			state.packageSelectPhone = false;
+			// Review and signup default
+			state.signupServiceBundleFourSavings = true;
+			state.bfsItemLayout2ColInternet = true;
+			state.bfsItemLayout2ColCable = true;
+			state.bfsItemLayout2ColPhone = true;
+			state.signupServiceReviewYourRequest = false;
+			state.signupServiceSignMeUp = false;
+			state.smuContentForm = false;
+			// Internet status
+			if (order.internet.status === 'ordered') {
+				state.signupServiceListInternet = true;
+				state.packageSelectInternet = true;
+				state.bfsItemLayout2ColInternet = false;
+			} else if (order.internet.status === 'inProgress') {
+				state.signupServiceListInternet === true;
+				state.serviceOptionStatusSelectedInternet = false;
+				state.serviceOptionStatusInternet = true;
+				state.serviceItemIntroInternet = true;
+				state.bandwidthCalculator = true;
+				state.serviceItemOptionsInternet = true;
+				state.serviceItemFooterInternet = true;
+				state.signupServiceBundleFourSavings = false;
+			} else if (order.internet.status === 'unordered') {
+			} else if (order.internet.status === 'notAvailable') {
+			} else {
+				throw "The order internet status is invalid.";
+			}
+			// Cable status
+			if (order.Cable.status === 'ordered') {
+				state.signupServiceListCable = true;
+				state.packageSelectCable = true;
+				state.bfsItemLayout2ColCable = false;
+			} else if (order.Cable.status === 'inProgress') {
+				state.signupServiceListCable === true;
+				state.serviceOptionStatusSelectedCable = false;
+				state.serviceOptionStatusCable = true;
+				state.serviceItemIntroCable = true;
+				state.serviceItemOptionsCable = true;
+				state.serviceItemFooterCable = true;
+				state.signupServiceBundleFourSavings = false;
+			} else if (order.Cable.status === 'unordered') {
+			} else if (order.Cable.status === 'notAvailable') {
+			} else {
+				throw "The order Cable status is invalid.";
+			}
+			// Phone status
+			if (order.Phone.status === 'ordered') {
+				state.signupServiceListPhone = true;
+				state.packageSelectPhone = true;
+				state.bfsItemLayout2ColPhone = false;
+			} else if (order.Phone.status === 'inProgress') {
+				state.signupServiceListPhone === true;
+				state.serviceOptionStatusSelectedPhone = false;
+				state.serviceOptionStatusPhone = true;
+				state.serviceItemIntroPhone = true;
+				state.serviceItemOptionsPhone = true;
+				state.serviceItemFooterPhone = true;
+				state.signupServiceBundleFourSavings = false;
+			} else if (order.Phone.status === 'unordered') {
+			} else if (order.Phone.status === 'notAvailable') {
+			} else {
+				throw "The order Phone status is invalid.";
+			}
+			// Review and signup status
+			if (order.internet.status !== 'inProgress' &&
+					order.internet.status !== 'inProgress' &&
+					order.internet.status !== 'inProgress' &&
+					(order.internet.status === 'ordered' ||
+					 order.internet.status === 'ordered' ||
+					 order.internet.status === 'ordered')) {
+				state.signupServiceReviewYourRequest = true;
+				state.signupServiceSignMeUp = true;
 			}
 		},
+		
+		// ShowHideState: function(name, value) {
+		// 	if (!(name in state))
+		// 		throw "The ShowHideState name does not exist in the state object.";
+		// 	if ((['show','hide']).includes(value) === false)
+		// 		throw "The ShowHideState value must be show or hide.";
+		// 	if ((['signupServiceListInternet',
+		// 			'serviceOptionStatusSelectedInternet',
+		// 			'serviceOptionStatusInternet',
+		// 			'serviceItemIntroInternet',
+		// 			'bandwidthCalculator',
+		// 			'serviceItemOptionsInternet',
+		// 			'packageSelectInternet',
+		// 		'signupServiceListCable',
+		// 			'serviceOptionStatusSelectedCable',
+		// 			'serviceOptionStatusCable',
+		// 			'serviceItemIntroCable',
+		// 			'serviceItemOptionsCable',
+		// 			'packageSelectCable',
+		// 		'signupServiceListPhone',
+		// 			'serviceOptionStatusSelectedPhone',
+		// 			'serviceOptionStatusPhone',
+		// 			'serviceItemIntroPhone',
+		// 			'serviceItemOptionsPhone',
+		// 			'packageSelectPhone',
+		// 		'signupServiceBundleForSavings',
+		// 		'signupServiceReviewYourRequest',
+		// 		'signupServiceSignMeUp',
+		// 			'smuContentForm']).includes(name)) {
+		// 		if (value == 'show')
+		// 			state[name] = 'block';
+		// 		else
+		// 			state[name] = 'none';
+		// 	} else if ((['bfsItemLayout2ColInternet',
+		// 		'bfsItemLayout2ColCable',
+		// 		'bfsItemLayout2ColPhone']).includes(name)) {
+		// 		if (value == 'show')
+		// 			state[name] = 'grid';
+		// 		else
+		// 			state[name] = 'none';
+		// 		
+		// 	} else if ((['serviceItemFooterInternet',
+		// 		'serviceItemFooterCable',
+		// 		'serviceItemFooterPhone']).includes(name)) {
+		// 		if (value == 'show')
+		// 			state[name] = 'flex';
+		// 		else
+		// 			state[name] = 'none';
+		// 	}
+		// },
 		
 		
 		// Utility functions
