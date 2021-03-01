@@ -278,7 +278,7 @@ var app = new Vue({
 		var cable = this.getUrlParameter('cable');
 		var phone = this.getUrlParameter('phine');
 		if (this.getUrlParameter('address') !== '')
-			order.serviceaddress = this.getUrlParameter('address');
+			this.order.serviceaddress = this.getUrlParameter('address');
 		if (internet) {
 			this.ShowInternet();
 		} else if (cable) {
@@ -292,11 +292,11 @@ var app = new Vue({
 	computed: {
 		isBundled: function() {
 			var cnt = 0;
-			if (order.internet.status !== 'unordered')
+			if (this.order.internet.status !== 'unordered')
 				cnt++;
-			if (order.cable.status !== 'unordered')
+			if (this.order.cable.status !== 'unordered')
 				cnt++;
-			if (order.phone.status !== 'unordered')
+			if (this.order.phone.status !== 'unordered')
 				cnt++;
 			if (cnt > 1)
 				return true;
@@ -306,136 +306,136 @@ var app = new Vue({
 	},
 	methods: {
 		ShowInternet: function() {
-			order.internet.status = 'inProgress';
-			if (order.cable.status !== 'ordered')
-				order.cable = { 'status': 'unordered' };
-			if (order.phone.status !== 'ordered')
-				order.phone = { 'status': 'unordered' };
+			this.order.internet.status = 'inProgress';
+			if (this.order.cable.status !== 'ordered')
+				this.order.cable = { 'status': 'unordered' };
+			if (this.order.phone.status !== 'ordered')
+				this.order.phone = { 'status': 'unordered' };
 			this.ShowHide();
 		},
 		ShowCable: function() {
-			if (order.internet.status !== 'ordered')
-				order.internet = { 'status': 'unordered' };
-			order.cable.status = 'inProgress';
-			if (order.phone.status !== 'ordered')
-				order.phone = { 'status': 'unordered' };
+			if (this.order.internet.status !== 'ordered')
+				this.order.internet = { 'status': 'unordered' };
+			this.order.cable.status = 'inProgress';
+			if (this.order.phone.status !== 'ordered')
+				this.order.phone = { 'status': 'unordered' };
 			this.ShowHide();
 		},
 		ShowPhone: function() {
-			if (order.internet.status !== 'ordered')
-				order.internet = { 'status': 'unordered' };
-			if (order.cable.status !== 'ordered')
-				order.cable = { 'status': 'unordered' };
-			order.phone.status = 'inProgress';
+			if (this.order.internet.status !== 'ordered')
+				this.order.internet = { 'status': 'unordered' };
+			if (this.order.cable.status !== 'ordered')
+				this.order.cable = { 'status': 'unordered' };
+			this.order.phone.status = 'inProgress';
 			this.ShowHide();
 		},
 		ShowNone: function() {
-			if (order.internet.status !== 'ordered')
-				order.internet = { 'status': 'unordered' };
-			if (order.cable.status !== 'ordered')
-				order.cable = { 'status': 'unordered' };
-			if (order.phone.status !== 'ordered')
-				order.phone = { 'status': 'unordered' };
+			if (this.order.internet.status !== 'ordered')
+				this.order.internet = { 'status': 'unordered' };
+			if (this.order.cable.status !== 'ordered')
+				this.order.cable = { 'status': 'unordered' };
+			if (this.order.phone.status !== 'ordered')
+				this.order.phone = { 'status': 'unordered' };
 			this.ShowHide();
 		},
 		ShowHide: function() {
 			// Internet default
-			state.signupServiceListInternet = false;
-			state.serviceOptionStatusSelectedInternet = true;
-			state.serviceOptionStatusInternet = false;
-			state.serviceItemIntroInternet = false;
-			state.bandwidthCalculator = false;
-			state.serviceItemOptionsInternet = false;
-			state.serviceItemFooterInternet = false;
-			state.packageSelectInternet = false;
+			this.state.signupServiceListInternet = false;
+			this.state.serviceOptionStatusSelectedInternet = true;
+			this.state.serviceOptionStatusInternet = false;
+			this.state.serviceItemIntroInternet = false;
+			this.state.bandwidthCalculator = false;
+			this.state.serviceItemOptionsInternet = false;
+			this.state.serviceItemFooterInternet = false;
+			this.state.packageSelectInternet = false;
 			// Cable default
-			state.signupServiceListCable = false;
-			state.serviceOptionStatusSelectedCable = true;
-			state.serviceOptionStatusCable = false;
-			state.serviceItemIntroCable = false;
-			state.serviceItemOptionsCable = false;
-			state.serviceItemFooterCable = false;
-			state.packageSelectCable = false;
+			this.state.signupServiceListCable = false;
+			this.state.serviceOptionStatusSelectedCable = true;
+			this.state.serviceOptionStatusCable = false;
+			this.state.serviceItemIntroCable = false;
+			this.state.serviceItemOptionsCable = false;
+			this.state.serviceItemFooterCable = false;
+			this.state.packageSelectCable = false;
 			// Phone default
-			state.signupServiceListPhone = false;
-			state.serviceOptionStatusSelectedPhone = true;
-			state.serviceOptionStatusPhone = false;
-			state.serviceItemIntroPhone = false;
-			state.serviceItemOptionsPhone = false;
-			state.serviceItemFooterPhone = false;
-			state.packageSelectPhone = false;
+			this.state.signupServiceListPhone = false;
+			this.state.serviceOptionStatusSelectedPhone = true;
+			this.state.serviceOptionStatusPhone = false;
+			this.state.serviceItemIntroPhone = false;
+			this.state.serviceItemOptionsPhone = false;
+			this.state.serviceItemFooterPhone = false;
+			this.state.packageSelectPhone = false;
 			// Review and signup default
-			state.signupServiceBundleFourSavings = true;
-			state.bfsItemLayout2ColInternet = true;
-			state.bfsItemLayout2ColCable = true;
-			state.bfsItemLayout2ColPhone = true;
-			state.signupServiceReviewYourRequest = false;
-			state.signupServiceSignMeUp = false;
-			state.smuContentForm = false;
+			this.state.signupServiceBundleFourSavings = true;
+			this.state.bfsItemLayout2ColInternet = true;
+			this.state.bfsItemLayout2ColCable = true;
+			this.state.bfsItemLayout2ColPhone = true;
+			this.state.signupServiceReviewYourRequest = false;
+			this.state.signupServiceSignMeUp = false;
+			this.state.smuContentForm = false;
 			// Internet status
-			if (order.internet.status === 'ordered') {
-				state.signupServiceListInternet = true;
-				state.packageSelectInternet = true;
-				state.bfsItemLayout2ColInternet = false;
-			} else if (order.internet.status === 'inProgress') {
-				state.signupServiceListInternet === true;
-				state.serviceOptionStatusSelectedInternet = false;
-				state.serviceOptionStatusInternet = true;
-				state.serviceItemIntroInternet = true;
-				state.bandwidthCalculator = true;
-				state.serviceItemOptionsInternet = true;
-				state.serviceItemFooterInternet = true;
-				state.signupServiceBundleFourSavings = false;
-			} else if (order.internet.status === 'unordered') {
-			} else if (order.internet.status === 'notAvailable') {
+			if (this.order.internet.status === 'ordered') {
+				this.state.signupServiceListInternet = true;
+				this.state.packageSelectInternet = true;
+				this.state.bfsItemLayout2ColInternet = false;
+			} else if (this.order.internet.status === 'inProgress') {
+				this.state.signupServiceListInternet === true;
+				this.state.serviceOptionStatusSelectedInternet = false;
+				this.state.serviceOptionStatusInternet = true;
+				this.state.serviceItemIntroInternet = true;
+				this.state.bandwidthCalculator = true;
+				this.state.serviceItemOptionsInternet = true;
+				this.state.serviceItemFooterInternet = true;
+				this.state.signupServiceBundleFourSavings = false;
+			} else if (this.order.internet.status === 'unordered') {
+			} else if (this.order.internet.status === 'notAvailable') {
 			} else {
 				throw "The order internet status is invalid.";
 			}
 			// Cable status
-			if (order.Cable.status === 'ordered') {
-				state.signupServiceListCable = true;
-				state.packageSelectCable = true;
-				state.bfsItemLayout2ColCable = false;
-			} else if (order.Cable.status === 'inProgress') {
-				state.signupServiceListCable === true;
-				state.serviceOptionStatusSelectedCable = false;
-				state.serviceOptionStatusCable = true;
-				state.serviceItemIntroCable = true;
-				state.serviceItemOptionsCable = true;
-				state.serviceItemFooterCable = true;
-				state.signupServiceBundleFourSavings = false;
-			} else if (order.Cable.status === 'unordered') {
-			} else if (order.Cable.status === 'notAvailable') {
+			if (this.order.Cable.status === 'ordered') {
+				this.state.signupServiceListCable = true;
+				this.state.packageSelectCable = true;
+				this.state.bfsItemLayout2ColCable = false;
+			} else if (this.order.Cable.status === 'inProgress') {
+				this.state.signupServiceListCable === true;
+				this.state.serviceOptionStatusSelectedCable = false;
+				this.state.serviceOptionStatusCable = true;
+				this.state.serviceItemIntroCable = true;
+				this.state.serviceItemOptionsCable = true;
+				this.state.serviceItemFooterCable = true;
+				this.state.signupServiceBundleFourSavings = false;
+			} else if (this.order.Cable.status === 'unordered') {
+			} else if (this.order.Cable.status === 'notAvailable') {
 			} else {
 				throw "The order Cable status is invalid.";
 			}
 			// Phone status
-			if (order.Phone.status === 'ordered') {
-				state.signupServiceListPhone = true;
-				state.packageSelectPhone = true;
-				state.bfsItemLayout2ColPhone = false;
-			} else if (order.Phone.status === 'inProgress') {
-				state.signupServiceListPhone === true;
-				state.serviceOptionStatusSelectedPhone = false;
-				state.serviceOptionStatusPhone = true;
-				state.serviceItemIntroPhone = true;
-				state.serviceItemOptionsPhone = true;
-				state.serviceItemFooterPhone = true;
-				state.signupServiceBundleFourSavings = false;
-			} else if (order.Phone.status === 'unordered') {
-			} else if (order.Phone.status === 'notAvailable') {
+			if (this.order.Phone.status === 'ordered') {
+				this.state.signupServiceListPhone = true;
+				this.state.packageSelectPhone = true;
+				this.state.bfsItemLayout2ColPhone = false;
+			} else if (this.order.Phone.status === 'inProgress') {
+				this.state.signupServiceListPhone === true;
+				this.state.serviceOptionStatusSelectedPhone = false;
+				this.state.serviceOptionStatusPhone = true;
+				this.state.serviceItemIntroPhone = true;
+				this.state.serviceItemOptionsPhone = true;
+				this.state.serviceItemFooterPhone = true;
+				this.state.signupServiceBundleFourSavings = false;
+			} else if (this.order.Phone.status === 'unordered') {
+			} else if (this.order.Phone.status === 'notAvailable') {
 			} else {
 				throw "The order Phone status is invalid.";
 			}
 			// Review and signup status
-			if (order.internet.status !== 'inProgress' &&
-					order.internet.status !== 'inProgress' &&
-					order.internet.status !== 'inProgress' &&
-					(order.internet.status === 'ordered' ||
-					 order.internet.status === 'ordered' ||
-					 order.internet.status === 'ordered')) {
-				state.signupServiceReviewYourRequest = true;
-				state.signupServiceSignMeUp = true;
+			if (this.order.internet.status !== 'inProgress' &&
+					this.order.internet.status !== 'inProgress' &&
+					this.order.internet.status !== 'inProgress' &&
+					(this.order.internet.status === 'ordered' ||
+					 this.order.internet.status === 'ordered' ||
+					 this.order.internet.status === 'ordered')) {
+				this.state.signupServiceReviewYourRequest = true;
+				this.state.signupServiceSignMeUp = true;
 			}
 		},
 		
