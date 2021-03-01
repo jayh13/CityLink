@@ -311,7 +311,7 @@ var app = new Vue({
 				order.cable = { 'status': 'unordered' };
 			if (order.phone.status !== 'ordered')
 				order.phone = { 'status': 'unordered' };
-			ShowHide();
+			this.ShowHide();
 		},
 		ShowCable: function() {
 			if (order.internet.status !== 'ordered')
@@ -319,7 +319,7 @@ var app = new Vue({
 			order.cable.status = 'inProgress';
 			if (order.phone.status !== 'ordered')
 				order.phone = { 'status': 'unordered' };
-			ShowHide();
+			this.ShowHide();
 		},
 		ShowPhone: function() {
 			if (order.internet.status !== 'ordered')
@@ -327,7 +327,7 @@ var app = new Vue({
 			if (order.cable.status !== 'ordered')
 				order.cable = { 'status': 'unordered' };
 			order.phone.status = 'inProgress';
-			ShowHide();
+			this.ShowHide();
 		},
 		ShowNone: function() {
 			if (order.internet.status !== 'ordered')
@@ -336,7 +336,7 @@ var app = new Vue({
 				order.cable = { 'status': 'unordered' };
 			if (order.phone.status !== 'ordered')
 				order.phone = { 'status': 'unordered' };
-			ShowHide();
+			this.ShowHide();
 		},
 		ShowHide: function() {
 			// Internet default
