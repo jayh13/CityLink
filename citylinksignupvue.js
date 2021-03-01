@@ -35,6 +35,10 @@ document.querySelector('.signup-service-review-your-request').setAttribute('v-sh
 document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
 document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
 
+
+};
+
+
 // Create the Vue.js application
 var app = new Vue({
 	el: '#page-main',
@@ -502,5 +506,3 @@ var app = new Vue({
 		}
 	}
 })
-
-};
