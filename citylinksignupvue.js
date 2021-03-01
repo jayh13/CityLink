@@ -392,11 +392,11 @@ var app = new Vue({
 				throw "The order internet status is invalid.";
 			}
 			// Cable status
-			if (this.order.Cable.status === 'ordered') {
+			if (this.order.cable.status === 'ordered') {
 				this.state.signupServiceListCable = true;
 				this.state.packageSelectCable = true;
 				this.state.bfsItemLayout2ColCable = false;
-			} else if (this.order.Cable.status === 'inProgress') {
+			} else if (this.order.cable.status === 'inProgress') {
 				this.state.signupServiceListCable === true;
 				this.state.serviceOptionStatusSelectedCable = false;
 				this.state.serviceOptionStatusCable = true;
@@ -404,17 +404,17 @@ var app = new Vue({
 				this.state.serviceItemOptionsCable = true;
 				this.state.serviceItemFooterCable = true;
 				this.state.signupServiceBundleFourSavings = false;
-			} else if (this.order.Cable.status === 'unordered') {
-			} else if (this.order.Cable.status === 'notAvailable') {
+			} else if (this.order.cable.status === 'unordered') {
+			} else if (this.order.cable.status === 'notAvailable') {
 			} else {
 				throw "The order Cable status is invalid.";
 			}
 			// Phone status
-			if (this.order.Phone.status === 'ordered') {
+			if (this.order.phone.status === 'ordered') {
 				this.state.signupServiceListPhone = true;
 				this.state.packageSelectPhone = true;
 				this.state.bfsItemLayout2ColPhone = false;
-			} else if (this.order.Phone.status === 'inProgress') {
+			} else if (this.order.phone.status === 'inProgress') {
 				this.state.signupServiceListPhone === true;
 				this.state.serviceOptionStatusSelectedPhone = false;
 				this.state.serviceOptionStatusPhone = true;
@@ -422,8 +422,8 @@ var app = new Vue({
 				this.state.serviceItemOptionsPhone = true;
 				this.state.serviceItemFooterPhone = true;
 				this.state.signupServiceBundleFourSavings = false;
-			} else if (this.order.Phone.status === 'unordered') {
-			} else if (this.order.Phone.status === 'notAvailable') {
+			} else if (this.order.phone.status === 'unordered') {
+			} else if (this.order.phone.status === 'notAvailable') {
 			} else {
 				throw "The order Phone status is invalid.";
 			}
