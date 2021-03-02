@@ -1,6 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-	
-
 
 // Create the Vue.js application
 var app = new Vue({
@@ -472,6 +469,10 @@ var app = new Vue({
 	}
 })
 
+
+
+document.addEventListener("DOMContentLoaded", function() {
+	
 
 		
 // Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
