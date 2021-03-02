@@ -319,23 +319,23 @@ var app = new Vue({
 			var name = e.target.name;
 			// Uncheck others and don't allow unchecking
 			if (name === 'Residence') {
-				state.residenceCheckboxField = true;
-				state.commercialCheckboxField = false;
-				state.nonProfitCheckboxField = false;
+				this.state.residenceCheckboxField = true;
+				this.state.commercialCheckboxField = false;
+				this.state.nonProfitCheckboxField = false;
 			} else if (name === 'Commercial') {
-				state.residenceCheckboxField = false;
-				state.commercialCheckboxField = true;
-				state.nonProfitCheckboxField = false;
+				this.state.residenceCheckboxField = false;
+				this.state.commercialCheckboxField = true;
+				this.state.nonProfitCheckboxField = false;
 			} else if (name === 'Non-Profit') {
-				state.residenceCheckboxField = false;
-				state.commercialCheckboxField = false;
-				state.nonProfitCheckboxField = true;
+				this.state.residenceCheckboxField = false;
+				this.state.commercialCheckboxField = false;
+				this.state.nonProfitCheckboxField = true;
 			}
-			if (name.toLowerCase() !== order.servicetype) {
-				order.servicetype = name.toLowerCase();
-				order.internet = { 'status': 'unordered' };
-				order.cable = { 'status': 'unordered' };
-				order.phone = { 'status': 'unordered' };
+			if (name.toLowerCase() !== this.order.servicetype) {
+				this.order.servicetype = name.toLowerCase();
+				this.order.internet = { 'status': 'unordered' };
+				this.order.cable = { 'status': 'unordered' };
+				this.order.phone = { 'status': 'unordered' };
 			}
 		},
 		
