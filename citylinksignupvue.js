@@ -169,7 +169,7 @@ var app = new Vue({
 		axios
 			.get('https://jayh13.github.io/CityLink/citylinkserviceplans.json')
 			.then(response => (
-				this.services = JSON.parse(Response.data)
+				this.services = response.data;
 			));
 	},
 	computed: {
