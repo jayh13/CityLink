@@ -140,7 +140,7 @@ var app = new Vue({
 		var srvtype = this.getUrlParameter('AccountType');
 		if (srvtype === 'Residential' || srvtype === '') {
 			this.order.servicetype = 'residence';
-			srvtype = 'Residential';
+			srvtype = 'Residence';
 		} else if (srvtype === 'Commercial' || srvtype === 'Industrial') {
 			this.order.servicetype = 'commercial';
 			srvtype = 'Commercial';
@@ -148,7 +148,7 @@ var app = new Vue({
 			this.order.servicetype = 'nonprofit';
 		} else {
 			this.order.servicetype = 'residence';
-			srvtype = 'Residential';
+			srvtype = 'Residence';
 		}
 		this.changeServiceRequestType({ 'target': { 'name': srvtype } });
 		
