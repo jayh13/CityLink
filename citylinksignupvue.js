@@ -1,4 +1,4 @@
-document.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
 	
 		
 // Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
@@ -510,4 +510,4 @@ var app = new Vue({
 
 
 
-};
+});
