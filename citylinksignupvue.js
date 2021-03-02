@@ -37,8 +37,6 @@ document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuCon
 
 	
 
-};
-
 // Create the Vue.js application
 var app = new Vue({
 	el: '#page-main',
@@ -508,3 +506,8 @@ var app = new Vue({
 		}
 	}
 })
+
+
+
+
+};
