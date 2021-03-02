@@ -336,6 +336,8 @@ var app = new Vue({
 				this.order.internet = { 'status': 'unordered' };
 				this.order.cable = { 'status': 'unordered' };
 				this.order.phone = { 'status': 'unordered' };
+			} else {
+				return false;
 			}
 		},
 		
