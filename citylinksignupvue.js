@@ -6,6 +6,7 @@ var app = new Vue({
 		'order': {
 			'servicetype': '',
 			'serviceaddress': 'Unknown',
+			'serviceaddressID': '',
 			'firstname': '',
 			'lastname': '',
 			'email': '',
@@ -92,8 +93,11 @@ var app = new Vue({
 	beforeCreate: function() {
 		// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
 		document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
+		document.querySelector('input#Residence').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
+		document.querySelector('input#Commercial').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
+		document.querySelector('input#Non-Profit').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('.signup-service-list-internet').setAttribute('v-show', 'state.signupServiceListInternet');
 		document.querySelector('.service-option-status-selected-internet').style.display = 'block';
 		document.querySelector('.service-option-status-selected-internet').setAttribute('v-show', 'state.serviceOptionStatusSelectedInternet');
@@ -126,13 +130,25 @@ var app = new Vue({
 		document.querySelector('.signup-service-review-your-request').setAttribute('v-show', 'state.signupServiceReviewYourRequest');
 		document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
 		document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
+		
 	},
 	created: function() {
 
 
 		var internet = this.getUrlParameter('internet');
 		var cable = this.getUrlParameter('cable');
-		var phone = this.getUrlParameter('phine');
+		var phone = this.getUrlParameter('phone');
+		var srvtype = this.getUrlParameter('AccountType');
+		if (srvtype === 'Residential' || srvtype === '')
+			this.order.servicetype = 'residence';
+		else if (srvtype === 'Commercial' || srvtype === 'Industrial')
+			this.order.servicetype = 'commercial';
+		else if (srvtype === 'Non-Profit') // Will never happen
+			this.order.servicetype = 'nonprofit';
+		else
+			this.order.servicetype = 'residence';
+			
+		this.order.serviceaddressID = this.getUrlParameter('PMCentralServiceAddressID');
 		if (this.getUrlParameter('address') !== '')
 			this.order.serviceaddress = this.getUrlParameter('address');
 		if (internet) {
@@ -299,7 +315,29 @@ var app = new Vue({
 				this.state.signupServiceSignMeUp = true;
 			}
 		},
-		
+		changeServiceRequestType: function(e) {
+			var name = e.target.name;
+			// Uncheck others and don't allow unchecking
+			if (name === 'Residence') {
+				state.residenceCheckboxField = true;
+				state.commercialCheckboxField = false;
+				state.nonProfitCheckboxField = false;
+			} else if (name === 'Commercial') {
+				state.residenceCheckboxField = false;
+				state.commercialCheckboxField = true;
+				state.nonProfitCheckboxField = false;
+			} else if (name === 'Non-Profit') {
+				state.residenceCheckboxField = false;
+				state.commercialCheckboxField = false;
+				state.nonProfitCheckboxField = true;
+			}
+			if (name.toLowerCase() !== order.servicetype) {
+				order.servicetype = name.toLowerCase();
+				order.internet = { 'status': 'unordered' };
+				order.cable = { 'status': 'unordered' };
+				order.phone = { 'status': 'unordered' };
+			}
+		}
 		
 		
 		// Utility functions
