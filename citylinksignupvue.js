@@ -93,11 +93,11 @@ var app = new Vue({
 	beforeCreate: function() {
 		// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
 		document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
-		document.querySelector('input#Residence').setAttribute('v-on:click.prevent','changeServiceRequestType');
+		document.querySelector('input#Residence').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
-		document.querySelector('input#Commercial').setAttribute('v-on:click.prevent','changeServiceRequestType');
+		document.querySelector('input#Commercial').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
-		document.querySelector('input#Non-Profit').setAttribute('v-on:click.prevent','changeServiceRequestType');
+		document.querySelector('input#Non-Profit').setAttribute('v-on:click','changeServiceRequestType');
 		document.querySelector('.signup-service-list-internet').setAttribute('v-show', 'state.signupServiceListInternet');
 		document.querySelector('.service-option-status-selected-internet').style.display = 'block';
 		document.querySelector('.service-option-status-selected-internet').setAttribute('v-show', 'state.serviceOptionStatusSelectedInternet');
@@ -328,7 +328,7 @@ var app = new Vue({
 				this.order.cable = { 'status': 'unordered' };
 				this.order.phone = { 'status': 'unordered' };
 			} else {
-				// e.preventDefault();
+				e.preventDefault();
 				return;
 			}
 			// Uncheck others and don't allow unchecking
