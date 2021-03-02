@@ -36,7 +36,7 @@ document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'sta
 document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
 
 	
-
+/*
 // Create the Vue.js application
 var app = new Vue({
 	el: '#page-main',
@@ -506,7 +506,7 @@ var app = new Vue({
 		}
 	}
 })
-
+*/
 
 
 
