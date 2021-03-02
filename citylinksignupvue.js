@@ -240,6 +240,43 @@ var app = new Vue({
 		},
 		'workingOn': undefined
 	},
+	beforeCreate: function() {
+		
+// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
+document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
+document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
+document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
+document.querySelector('.signup-service-list-internet').setAttribute('v-show', 'state.signupServiceListInternet');
+document.querySelector('.service-option-status-selected-internet').setAttribute('v-show', 'state.serviceOptionStatusSelectedInternet');
+document.querySelector('.service-option-status-internet').setAttribute('v-show', 'state.serviceOptionStatusInternet');
+document.querySelector('.service-item-intro-internet').setAttribute('v-show', 'state.serviceItemIntroInternet');
+document.querySelector('.bandwidth-calculator').setAttribute('v-show', 'state.bandwidthCalculator');
+document.querySelector('.service-item-options-internet').setAttribute('v-show', 'state.serviceItemOptionsInternet');
+document.querySelector('.service-item-footer-internet').setAttribute('v-show', 'state.serviceItemFooterInternet');
+document.querySelector('.package-select-internet').setAttribute('v-show', 'state.packageSelectInternet');
+document.querySelector('.signup-service-list-cable').setAttribute('v-show', 'state.signupServiceListCable');
+document.querySelector('.service-option-status-selected-cable').setAttribute('v-show', 'state.serviceOptionStatusSelectedCable');
+document.querySelector('.service-option-status-cable').setAttribute('v-show', 'state.serviceOptionStatusCable');
+document.querySelector('.service-item-intro-cable').setAttribute('v-show', 'state.serviceItemIntroCable');
+document.querySelector('.service-item-options-cable').setAttribute('v-show', 'state.serviceItemOptionsCable');
+document.querySelector('.service-item-footer-cable').setAttribute('v-show', 'state.serviceItemFooterCable');
+document.querySelector('.package-select-cable').setAttribute('v-show', 'state.packageSelectCable');
+document.querySelector('.signup-service-list-phone').setAttribute('v-show', 'state.signupServiceListPhone');
+document.querySelector('.service-option-status-selected-phone').setAttribute('v-show', 'state.serviceOptionStatusSelectedPhone');
+document.querySelector('.service-option-status-phone').setAttribute('v-show', 'state.serviceOptionStatusPhone');
+document.querySelector('.service-item-intro-phone').setAttribute('v-show', 'state.serviceItemIntroPhone');
+document.querySelector('.service-item-options-phone').setAttribute('v-show', 'state.serviceItemOptionsPhone');
+document.querySelector('.service-item-footer-phone').setAttribute('v-show', 'state.serviceItemFooterPhone');
+document.querySelector('.package-select-phone').setAttribute('v-show', 'state.packageSelectPhone');
+document.querySelector('.signup-service-bundle-for-savings').setAttribute('v-show', 'state.signupServiceBundleForSavings');
+document.querySelector('.bfs-item-layout-2-col-internet').setAttribute('v-show', 'state.bfsItemLayout2ColInternet');
+document.querySelector('.bfs-item-layout-2-col-cable').setAttribute('v-show', 'state.bfsItemLayout2ColCable');
+document.querySelector('.bfs-item-layout-2-col-phone').setAttribute('v-show', 'state.bfsItemLayout2ColPhone');
+document.querySelector('.signup-service-review-your-request').setAttribute('v-show', 'state.signupServiceReviewYourRequest');
+document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
+document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
+
+	},
 	created: function() {
 
 
@@ -475,40 +512,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	
 
 		
-// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
-document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
-document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
-document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
-document.querySelector('.signup-service-list-internet').setAttribute('v-show', 'state.signupServiceListInternet');
-document.querySelector('.service-option-status-selected-internet').setAttribute('v-show', 'state.serviceOptionStatusSelectedInternet');
-document.querySelector('.service-option-status-internet').setAttribute('v-show', 'state.serviceOptionStatusInternet');
-document.querySelector('.service-item-intro-internet').setAttribute('v-show', 'state.serviceItemIntroInternet');
-document.querySelector('.bandwidth-calculator').setAttribute('v-show', 'state.bandwidthCalculator');
-document.querySelector('.service-item-options-internet').setAttribute('v-show', 'state.serviceItemOptionsInternet');
-document.querySelector('.service-item-footer-internet').setAttribute('v-show', 'state.serviceItemFooterInternet');
-document.querySelector('.package-select-internet').setAttribute('v-show', 'state.packageSelectInternet');
-document.querySelector('.signup-service-list-cable').setAttribute('v-show', 'state.signupServiceListCable');
-document.querySelector('.service-option-status-selected-cable').setAttribute('v-show', 'state.serviceOptionStatusSelectedCable');
-document.querySelector('.service-option-status-cable').setAttribute('v-show', 'state.serviceOptionStatusCable');
-document.querySelector('.service-item-intro-cable').setAttribute('v-show', 'state.serviceItemIntroCable');
-document.querySelector('.service-item-options-cable').setAttribute('v-show', 'state.serviceItemOptionsCable');
-document.querySelector('.service-item-footer-cable').setAttribute('v-show', 'state.serviceItemFooterCable');
-document.querySelector('.package-select-cable').setAttribute('v-show', 'state.packageSelectCable');
-document.querySelector('.signup-service-list-phone').setAttribute('v-show', 'state.signupServiceListPhone');
-document.querySelector('.service-option-status-selected-phone').setAttribute('v-show', 'state.serviceOptionStatusSelectedPhone');
-document.querySelector('.service-option-status-phone').setAttribute('v-show', 'state.serviceOptionStatusPhone');
-document.querySelector('.service-item-intro-phone').setAttribute('v-show', 'state.serviceItemIntroPhone');
-document.querySelector('.service-item-options-phone').setAttribute('v-show', 'state.serviceItemOptionsPhone');
-document.querySelector('.service-item-footer-phone').setAttribute('v-show', 'state.serviceItemFooterPhone');
-document.querySelector('.package-select-phone').setAttribute('v-show', 'state.packageSelectPhone');
-document.querySelector('.signup-service-bundle-for-savings').setAttribute('v-show', 'state.signupServiceBundleForSavings');
-document.querySelector('.bfs-item-layout-2-col-internet').setAttribute('v-show', 'state.bfsItemLayout2ColInternet');
-document.querySelector('.bfs-item-layout-2-col-cable').setAttribute('v-show', 'state.bfsItemLayout2ColCable');
-document.querySelector('.bfs-item-layout-2-col-phone').setAttribute('v-show', 'state.bfsItemLayout2ColPhone');
-document.querySelector('.signup-service-review-your-request').setAttribute('v-show', 'state.signupServiceReviewYourRequest');
-document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
-document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
-
 	
 
 });
