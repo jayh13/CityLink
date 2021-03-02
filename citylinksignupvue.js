@@ -1,8 +1,5 @@
 window.onload = function() {
 	
-	
-
-};
 		
 // Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
 document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
@@ -38,6 +35,9 @@ document.querySelector('.signup-service-review-your-request').setAttribute('v-sh
 document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
 document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
 
+	
+
+};
 
 // Create the Vue.js application
 var app = new Vue({
