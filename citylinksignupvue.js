@@ -337,7 +337,7 @@ var app = new Vue({
 				order.cable = { 'status': 'unordered' };
 				order.phone = { 'status': 'unordered' };
 			}
-		}
+		},
 		
 		
 		// Utility functions
