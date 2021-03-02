@@ -384,7 +384,7 @@ document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuCon
 				this.state.packageSelectInternet = true;
 				this.state.bfsItemLayout2ColInternet = false;
 			} else if (this.order.internet.status === 'inProgress') {
-				this.state.signupServiceListInternet === true;
+				this.state.signupServiceListInternet = true;
 				this.state.serviceOptionStatusSelectedInternet = false;
 				this.state.serviceOptionStatusInternet = true;
 				this.state.serviceItemIntroInternet = true;
@@ -403,7 +403,7 @@ document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuCon
 				this.state.packageSelectCable = true;
 				this.state.bfsItemLayout2ColCable = false;
 			} else if (this.order.cable.status === 'inProgress') {
-				this.state.signupServiceListCable === true;
+				this.state.signupServiceListCable = true;
 				this.state.serviceOptionStatusSelectedCable = false;
 				this.state.serviceOptionStatusCable = true;
 				this.state.serviceItemIntroCable = true;
@@ -421,7 +421,7 @@ document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuCon
 				this.state.packageSelectPhone = true;
 				this.state.bfsItemLayout2ColPhone = false;
 			} else if (this.order.phone.status === 'inProgress') {
-				this.state.signupServiceListPhone === true;
+				this.state.signupServiceListPhone = true;
 				this.state.serviceOptionStatusSelectedPhone = false;
 				this.state.serviceOptionStatusPhone = true;
 				this.state.serviceItemIntroPhone = true;
