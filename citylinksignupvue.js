@@ -130,6 +130,11 @@ var app = new Vue({
 		document.querySelector('.signup-service-review-your-request').setAttribute('v-show', 'state.signupServiceReviewYourRequest');
 		document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
 		document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
+		var lst = document.querySelectorAll('.service-item-options-internet > .service-option-list-3-col > .service-option-item');
+		for (var i = lst.length - 1; i > 0; i--) {
+			lst[i].remove();
+		}
+		document.querySelector('.service-item-options-internet > .service-option-list-3-col').setAttribute('v-for', 'plan in services.internet.plans');
 		
 	},
 	created: function() {
