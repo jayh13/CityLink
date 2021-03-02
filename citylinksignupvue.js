@@ -139,15 +139,15 @@ var app = new Vue({
 		var phone = this.getUrlParameter('phone');
 		var srvtype = this.getUrlParameter('AccountType');
 		if (srvtype === 'Residential' || srvtype === '') {
-			this.order.servicetype = 'residence';
+			// this.order.servicetype = 'residence';
 			srvtype = 'Residence';
 		} else if (srvtype === 'Commercial' || srvtype === 'Industrial') {
-			this.order.servicetype = 'commercial';
+			// this.order.servicetype = 'commercial';
 			srvtype = 'Commercial';
 		} else if (srvtype === 'Non-Profit') { // Will never happen
-			this.order.servicetype = 'nonprofit';
+			// this.order.servicetype = 'nonprofit';
 		} else {
-			this.order.servicetype = 'residence';
+			// this.order.servicetype = 'residence';
 			srvtype = 'Residence';
 		}
 		this.changeServiceRequestType({ 'target': { 'name': srvtype } });
