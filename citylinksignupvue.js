@@ -1,4 +1,4 @@
-window.onload = function() {
+document.onload = function() {
 	
 		
 // Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
