@@ -168,7 +168,9 @@ var app = new Vue({
 	mounted: function() {
 		axios
 			.get('https://jayh13.github.io/CityLink/citylinkserviceplans.json')
-			.then(response => (this.services = response.data));
+			.then(response => (
+				this.services = JSON.parse(Response.data)
+			));
 	},
 	computed: {
 		isBundled: function() {
