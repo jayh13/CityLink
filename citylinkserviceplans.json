@@ -14,7 +14,7 @@
                     "price": 27,
                     "bundledprice": 23
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 26,
                     "bundledprice": 22
                 },
@@ -33,7 +33,7 @@
                     "price": 41,
                     "bundledprice": 37
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 40,
                     "bundledprice": 36
                 },
@@ -54,7 +54,7 @@
                     "bundledprice": 57,
                     "description": "Great for small home office and light video conferencng."
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 60,
                     "bundledprice": 56
                 },
@@ -73,7 +73,7 @@
                     "price": 81,
                     "bundledprice": 77
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 80,
                     "bundledprice": 76,
                     "isMostPopular": true
@@ -95,7 +95,7 @@
                     "bundledprice": 87
 
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 90,
                     "bundledprice": 86
                 },
@@ -115,7 +115,7 @@
                     "bundledprice": 97,
                     "isMostPopular": true
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 100,
                     "bundledprice": 96
                 },
@@ -135,7 +135,7 @@
                     "bundledprice": 97,
                     "isMostPopular": true
                 },
-                "nonProfit": {
+                "nonprofit": {
                     "price": 100,
                     "bundledprice": 96
                 },
