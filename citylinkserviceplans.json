@@ -127,7 +127,7 @@
                 "download": 501,
                 "upload": 25,
                 "residence": {
-                    "price": 99,
+                    "price": 999,
                     "bundledprice": 95
                 },
                 "commercial": {
@@ -140,6 +140,7 @@
                     "bundledprice": 96
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
+                "isavailable": false,
                 "options": []
             }
         ],
