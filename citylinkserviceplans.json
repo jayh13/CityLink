@@ -121,6 +121,26 @@
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
                 "options": []
+            }, {
+                "id": 501,
+                "title": "Connect 501",
+                "download": 501,
+                "upload": 25,
+                "residence": {
+                    "price": 99,
+                    "bundledprice": 95
+                },
+                "commercial": {
+                    "price": 101,
+                    "bundledprice": 97,
+                    "isMostPopular": true
+                },
+                "nonProfit": {
+                    "price": 100,
+                    "bundledprice": 96
+                },
+                "description": "The ultimate solution for people or families who stream most home entertainment.",
+                "options": []
             }
         ],
         "options": [
