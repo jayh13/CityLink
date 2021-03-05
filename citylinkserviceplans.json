@@ -1,4 +1,4 @@
-{
+var x = {
     "internet": {
         "plans": [{
                 "id": 20,
@@ -88,7 +88,6 @@
                 "residence": {
                     "price": 89,
                     "bundledprice": 85
-
                 },
                 "commercial": {
                     "price": 91,
@@ -194,22 +193,14 @@
 					]
 				}
 			]
-        ]
+        }
     },
     "cable": {
-        "plans": [
-
-        ],
-        "options": [
-
-        ]
+        "plans": [],
+        "options": {}
     },
     "phone": {
-        "plans": [
-
-        ],
-        "options": [
-
-        ]
+        "plans": [],
+        "options": {}
     }
 }
