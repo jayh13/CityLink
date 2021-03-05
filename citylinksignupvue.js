@@ -3,8 +3,9 @@
 var app = new Vue({
 	el: '#page-main',
 	data: {
+		'version': 2,
 		'order': {
-			'servicetype': '',
+			'servicecusttype': '',
 			'serviceaddress': 'Unknown',
 			'serviceaddressID': '',
 			'firstname': '',
@@ -14,16 +15,23 @@ var app = new Vue({
 			'utilitynumber': '',
 			'internet': {
 				'status': 'unordered',
+				'plan': undefined,
+				'options': []
 			},
 			'cable': {
 				'status': 'unordered',
+				'plan': undefined,
+				'options': []
 			},
 			'phone': {
 				'status': 'unordered',
+				'plan': undefined,
+				'options': []
 			}
 		},
-		'services': undefined,
+		'services': {'internet':{'plans':[]},'cable':{'plans':[]},'phone':{'plans':[]}},
 		'state': {
+			'initialentry': 'internet',
 			'residenceCheckboxField': false,
 			'commercialCheckboxField': false,
 			'nonProfitCheckboxField': false,
@@ -49,7 +57,7 @@ var app = new Vue({
 			  'serviceItemOptionsPhone': true,
 			  'serviceItemFooterPhone': true,
 			  'packageSelectPhone': false,
-			'signupServiceBundleFourSavings': false,
+			'signupServiceBundleForSavings': false,
 				'bfsItemLayout2ColInternet': false,
 				'bfsItemLayout2ColCable': false,
 				'bfsItemLayout2ColPhone': false,
@@ -80,7 +88,7 @@ var app = new Vue({
 			  'serviceItemOptionsPhone': 'block',
 			  'serviceItemFooterPhone': 'flex',
 			  'packageSelectPhone': 'none',
-			'signupServiceBundleFourSavings': 'none',
+			'signupServiceBundleForSavings': 'none',
 				'bfsItemLayout2ColInternet': 'none',
 				'bfsItemLayout2ColCable': 'none',
 				'bfsItemLayout2ColPhone': 'none',
@@ -90,14 +98,25 @@ var app = new Vue({
 		},
 		'workingOn': undefined
 	},
+	watch: {
+		'order.internet.status': function(val) {
+			this.ShowHide();
+		},
+		'order.cable.status': function(val) {
+			this.ShowHide();
+		},
+		'order.phone.status': function (val) {
+			this.ShowHide();
+		}
+	},
 	beforeCreate: function() {
 		// Add the Vue.js attributes. We could do this in the WebFlow interface but it's so clicky
 		document.querySelector('input#Residence').setAttribute('v-model','state.residenceCheckboxField');
-		document.querySelector('input#Residence').setAttribute('v-on:click','changeServiceRequestType');
+		document.querySelector('input#Residence').setAttribute('v-on:click','changeServiceRequestCustType');
 		document.querySelector('input#Commercial').setAttribute('v-model','state.commercialCheckboxField');
-		document.querySelector('input#Commercial').setAttribute('v-on:click','changeServiceRequestType');
+		document.querySelector('input#Commercial').setAttribute('v-on:click','changeServiceRequestCustType');
 		document.querySelector('input#Non-Profit').setAttribute('v-model','state.nonProfitCheckboxField');
-		document.querySelector('input#Non-Profit').setAttribute('v-on:click','changeServiceRequestType');
+		document.querySelector('input#Non-Profit').setAttribute('v-on:click','changeServiceRequestCustType');
 		document.querySelector('.signup-service-list-internet').setAttribute('v-show', 'state.signupServiceListInternet');
 		document.querySelector('.service-option-status-selected-internet').style.display = 'block';
 		document.querySelector('.service-option-status-selected-internet').setAttribute('v-show', 'state.serviceOptionStatusSelectedInternet');
@@ -130,11 +149,60 @@ var app = new Vue({
 		document.querySelector('.signup-service-review-your-request').setAttribute('v-show', 'state.signupServiceReviewYourRequest');
 		document.querySelector('.signup-service-sign-me-up').setAttribute('v-show', 'state.signupServiceSignMeUp');
 		document.querySelector('.smu-content-form').setAttribute('v-show', 'state.smuContentForm');
-		var lst = document.querySelectorAll('.service-item-options-internet > .service-option-list-3-col > .service-option-item');
+		var lst = document.querySelectorAll('.service-item-options-internet .service-option-item');
 		for (var i = lst.length - 1; i > 0; i--) {
 			lst[i].remove();
 		}
-		document.querySelector('.service-item-options-internet > .service-option-list-3-col').setAttribute('v-for', 'plan in services.internet.plans');
+		lst[0].setAttribute('v-bind:data-service', '"internet"');
+		lst[0].setAttribute('v-bind:data-plan', 'plan.id');
+		lst[0].setAttribute('v-if', 'getPlanAttribute(plan, order.servicecusttype, "isavailable") !== false');
+		lst[0].querySelector('.service-option-title').innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "title") }}';
+		var lst2 = lst[0].querySelectorAll('.service-option-specs-list-item > strong');
+		lst2[0].innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "download") }} ';
+		lst2[1].innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "upload") }} ';
+		lst[0].querySelector('.service-option-description').innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "description") }}';
+		lst[0].querySelector('.rate-cost-amount-figure').innerHTML = '{{ isBundled ? getPlanAttribute(plan, order.servicecusttype, "bundledprice") : getPlanAttribute(plan, order.servicecusttype, "price") }}';
+		lst[0].querySelector('.rate-cost-subinfo-details').innerHTML = '{{ isBundled ? "Bundled" : "Full Price" }}';
+		lst[0].querySelector('.service-option-rate-notice').setAttribute('v-show', '!isBundled');
+		lst[0].querySelector('.service-option-preferred').setAttribute('v-show', 'getPlanAttribute(plan, order.servicecusttype, "isMostPopular")');
+		lst[0].setAttribute('v-on:click', 'selectPlan');
+		lst[0].setAttribute('v-for', 'plan in services.internet.plans');
+		lst[0].setAttribute('v-bind:key', 'plan.id');
+		
+		document.querySelector('.service-option-status-internet > .service-option-status-number').innerHTML = '{{ availableInternetPlans }}';
+		document.querySelector('.service-option-status-internet > .service-option-status-plural').setAttribute('v-show', 'availableInternetPlans !== 1');
+		
+		document.querySelector('.package-select-internet .service-select-title').innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "title") : "" }}';
+		document.querySelector('.package-select-internet .select-rate-original-cost').setAttribute('v-show', 'isBundled');
+		document.querySelector('.package-select-internet .select-rate-bundled-cost').setAttribute('v-show', 'isBundled');
+		document.querySelector('.package-select-internet .select-rate-full-cost').setAttribute('v-show', '!isBundled');
+		document.querySelector('.package-select-internet .select-rate-notice').setAttribute('v-show', '!isBundled');
+		
+		document.querySelector('.package-select-internet .select-rate-original-cost .select-rate-amount-figure').innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "price") : "-" }}';
+		document.querySelector('.package-select-internet .select-rate-bundled-cost .select-rate-amount-figure').innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "bundeledprice") : "-" }}';
+		document.querySelector('.package-select-internet .select-rate-full-cost .select-rate-amount-figure').innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "price") : "-" }}';
+		
+		lst2 = document.querySelectorAll('.package-select-internet .service-select-specs-list-item > strong');
+		lst2[0].innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "download") : "-" }} ';
+		lst2[1].innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "upload") : "-" }} ';
+		document.querySelector('.package-select-internet .service-select-description').innerHTML = '{{ order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "description") : "-" }}';
+		
+		lst = document.querySelectorAll('.package-select-internet .ps-option-item');
+		for (var i = lst.length - 1; i > 0; i--) {
+			lst[i].remove();
+		}
+		lst[0].setAttribute('v-bind:data-service', '"internet"');
+		lst[0].setAttribute('v-bind:data-plan', 'plan.id');
+		lst[0].setAttribute('v-if', 'getPlanAttribute(plan, order.servicecusttype, "isavailable") !== false && order.internet.plan !== undefined && parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "id")) < parseInt(getPlanAttribute(plan, order.servicecusttype, "id"))');
+		lst[0].querySelector('.ps-option-card-title').innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "download") }} Mbps';
+		lst[0].querySelector('.ps-option-card-description').innerHTML = '{{ getPlanAttribute(plan, order.servicecusttype, "description") }}';
+		lst[0].querySelector('.ps-option-card-button-amount').innerHTML = '{{ order.internet.plan === undefined ? "-" : isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundeledprice")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "bundeledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "price")) }} ';
+		lst[0].setAttribute('v-on:click', 'selectPlan');
+		lst[0].setAttribute('v-for', 'plan in services.internet.plans');
+		lst[0].setAttribute('v-bind:key', 'plan.id');
+		
+		
+		
 		
 	},
 	created: function() {
@@ -142,31 +210,31 @@ var app = new Vue({
 		var internet = this.getUrlParameter('internet');
 		var cable = this.getUrlParameter('cable');
 		var phone = this.getUrlParameter('phone');
-		var srvtype = this.getUrlParameter('AccountType');
-		if (srvtype === 'Residential' || srvtype === '') {
-			// this.order.servicetype = 'residence';
-			srvtype = 'Residence';
-		} else if (srvtype === 'Commercial' || srvtype === 'Industrial') {
-			// this.order.servicetype = 'commercial';
-			srvtype = 'Commercial';
-		} else if (srvtype === 'Non-Profit') { // Will never happen
-			// this.order.servicetype = 'nonprofit';
+		var srvcusttype = this.getUrlParameter('AccountType');
+		if (srvcusttype === 'Residential' || srvcusttype === '') {
+			srvcusttype = 'Residence'; // Force empty values to residence
+		} else if (srvcusttype === 'Commercial' || srvcusttype === 'Industrial') {
+			srvcusttype = 'Commercial'; // Force industrial to commercial
+		} else if (srvcusttype === 'Non-Profit') { // Will never happen
 		} else {
-			// this.order.servicetype = 'residence';
-			srvtype = 'Residence';
+			srvcusttype = 'Residence'; // Force anything else to residence
 		}
-		this.changeServiceRequestType({ 'target': { 'name': srvtype } });
+		this.changeServiceRequestCustType({ 'target': { 'name': srvcusttype } });
 		
 		this.order.serviceaddressID = this.getUrlParameter('PMCentralServiceAddressID');
 		if (this.getUrlParameter('address') !== '')
 			this.order.serviceaddress = this.getUrlParameter('address');
 		if (internet) {
+			this.state.initialentry = 'internet';
 			this.ShowInternet();
 		} else if (cable) {
+			this.state.initialentry = 'cable';
 			this.ShowCable();
 		} else if (phone) {
+			this.state.initialentry = 'phone';
 			this.ShowPhone();
 		} else {
+			this.state.initialentry = 'none';
 			this.ShowNone();
 		}
 	},
@@ -190,46 +258,85 @@ var app = new Vue({
 				return true;
 			else
 				return false;
-		}
+		},
+		availableInternetPlans: function() {
+			return this.AvailablePlans('internet');
+			// var cnt = 0;
+			// for (var i = 0; i < this.services.internet.plans.length; i++) {
+			// 	if ((this.services.internet.plans[i].isavailable === undefined ||
+			// 		this.services.internet.plans[i].isavailable !== false) &&
+			// 		(this.services.internet.plans[i][this.order.servicecusttype].isavailable === undefined ||
+			// 		this.services.internet.plans[i][this.order.servicecusttype].isavailable !== false)
+			// 		)
+			// 		cnt++;
+			// }
+			// return cnt;
+		},
+		availableCablePlans: function() {
+			return this.AvailablePlans('cable');
+			// var cnt = 0;
+			// for (var i = 0; i < this.services.cable.plans.length; i++) {
+			// 	if ((this.services.cable.plans[i].isavailable === undefined ||
+			// 		this.services.cable.plans[i].isavailable !== false) &&
+			// 		(this.services.cable.plans[i][this.order.servicecusttype].isavailable === undefined ||
+			// 		this.services.cable.plans[i][this.order.servicecusttype].isavailable !== false)
+			// 		)
+			// 		cnt++;
+			// }
+			// return cnt;
+		},
+		availablePhonePlans: function() {
+			return this.AvailablePlans('phone');
+			// var cnt = 0;
+			// for (var i = 0; i < this.services.phone.plans.length; i++) {
+			// 	if ((this.services.phone.plans[i].isavailable === undefined ||
+			// 		this.services.phone.plans[i].isavailable !== false) &&
+			// 		(this.services.phone.plans[i][this.order.servicecusttype].isavailable === undefined ||
+			// 		this.services.phone.plans[i][this.order.servicecusttype].isavailable !== false)
+			// 		)
+			// 		cnt++;
+			// }
+			// return cnt;
+		},
 	},
 	methods: {
 		ShowInternet: function() {
 			this.order.internet.status = 'inProgress';
 			if (this.order.cable.status !== 'ordered')
-				this.order.cable = { 'status': 'unordered' };
+				this.order.cable = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			if (this.order.phone.status !== 'ordered')
-				this.order.phone = { 'status': 'unordered' };
+				this.order.phone = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			this.ShowHide();
 		},
 		ShowCable: function() {
 			if (this.order.internet.status !== 'ordered')
-				this.order.internet = { 'status': 'unordered' };
+				this.order.internet = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			this.order.cable.status = 'inProgress';
 			if (this.order.phone.status !== 'ordered')
-				this.order.phone = { 'status': 'unordered' };
+				this.order.phone = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			this.ShowHide();
 		},
 		ShowPhone: function() {
 			if (this.order.internet.status !== 'ordered')
-				this.order.internet = { 'status': 'unordered' };
+				this.order.internet = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			if (this.order.cable.status !== 'ordered')
-				this.order.cable = { 'status': 'unordered' };
+				this.order.cable = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			this.order.phone.status = 'inProgress';
 			this.ShowHide();
 		},
 		ShowNone: function() {
 			if (this.order.internet.status !== 'ordered')
-				this.order.internet = { 'status': 'unordered' };
+				this.order.internet = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			if (this.order.cable.status !== 'ordered')
-				this.order.cable = { 'status': 'unordered' };
+				this.order.cable = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			if (this.order.phone.status !== 'ordered')
-				this.order.phone = { 'status': 'unordered' };
+				this.order.phone = { 'status': 'unordered', 'plan': undefined, 'options': [] };
 			this.ShowHide();
 		},
 		ShowHide: function() {
 			// Internet default
 			this.state.signupServiceListInternet = false;
-			this.state.serviceOptionStatusSelectedInternet = true;
+			this.state.serviceOptionStatusSelectedInternet = false;
 			this.state.serviceOptionStatusInternet = false;
 			this.state.serviceItemIntroInternet = false;
 			this.state.bandwidthCalculator = false;
@@ -238,7 +345,7 @@ var app = new Vue({
 			this.state.packageSelectInternet = false;
 			// Cable default
 			this.state.signupServiceListCable = false;
-			this.state.serviceOptionStatusSelectedCable = true;
+			this.state.serviceOptionStatusSelectedCable = false;
 			this.state.serviceOptionStatusCable = false;
 			this.state.serviceItemIntroCable = false;
 			this.state.serviceItemOptionsCable = false;
@@ -246,14 +353,14 @@ var app = new Vue({
 			this.state.packageSelectCable = false;
 			// Phone default
 			this.state.signupServiceListPhone = false;
-			this.state.serviceOptionStatusSelectedPhone = true;
+			this.state.serviceOptionStatusSelectedPhone = false;
 			this.state.serviceOptionStatusPhone = false;
 			this.state.serviceItemIntroPhone = false;
 			this.state.serviceItemOptionsPhone = false;
 			this.state.serviceItemFooterPhone = false;
 			this.state.packageSelectPhone = false;
 			// Review and signup default
-			this.state.signupServiceBundleFourSavings = true;
+			this.state.signupServiceBundleForSavings = true;
 			this.state.bfsItemLayout2ColInternet = true;
 			this.state.bfsItemLayout2ColCable = true;
 			this.state.bfsItemLayout2ColPhone = true;
@@ -263,17 +370,17 @@ var app = new Vue({
 			// Internet status
 			if (this.order.internet.status === 'ordered') {
 				this.state.signupServiceListInternet = true;
+				this.state.serviceOptionStatusSelectedInternet = true;
 				this.state.packageSelectInternet = true;
 				this.state.bfsItemLayout2ColInternet = false;
 			} else if (this.order.internet.status === 'inProgress') {
 				this.state.signupServiceListInternet = true;
-				this.state.serviceOptionStatusSelectedInternet = false;
 				this.state.serviceOptionStatusInternet = true;
 				this.state.serviceItemIntroInternet = true;
 				this.state.bandwidthCalculator = true;
 				this.state.serviceItemOptionsInternet = true;
 				this.state.serviceItemFooterInternet = true;
-				this.state.signupServiceBundleFourSavings = false;
+				this.state.signupServiceBundleForSavings = false;
 			} else if (this.order.internet.status === 'unordered') {
 			} else if (this.order.internet.status === 'notAvailable') {
 			} else {
@@ -282,16 +389,16 @@ var app = new Vue({
 			// Cable status
 			if (this.order.cable.status === 'ordered') {
 				this.state.signupServiceListCable = true;
+				this.state.serviceOptionStatusSelectedCable = true;
 				this.state.packageSelectCable = true;
 				this.state.bfsItemLayout2ColCable = false;
 			} else if (this.order.cable.status === 'inProgress') {
 				this.state.signupServiceListCable = true;
-				this.state.serviceOptionStatusSelectedCable = false;
 				this.state.serviceOptionStatusCable = true;
 				this.state.serviceItemIntroCable = true;
 				this.state.serviceItemOptionsCable = true;
 				this.state.serviceItemFooterCable = true;
-				this.state.signupServiceBundleFourSavings = false;
+				this.state.signupServiceBundleForSavings = false;
 			} else if (this.order.cable.status === 'unordered') {
 			} else if (this.order.cable.status === 'notAvailable') {
 			} else {
@@ -300,16 +407,16 @@ var app = new Vue({
 			// Phone status
 			if (this.order.phone.status === 'ordered') {
 				this.state.signupServiceListPhone = true;
+				this.state.serviceOptionStatusSelectedPhone = true;
 				this.state.packageSelectPhone = true;
 				this.state.bfsItemLayout2ColPhone = false;
 			} else if (this.order.phone.status === 'inProgress') {
 				this.state.signupServiceListPhone = true;
-				this.state.serviceOptionStatusSelectedPhone = false;
 				this.state.serviceOptionStatusPhone = true;
 				this.state.serviceItemIntroPhone = true;
 				this.state.serviceItemOptionsPhone = true;
 				this.state.serviceItemFooterPhone = true;
-				this.state.signupServiceBundleFourSavings = false;
+				this.state.signupServiceBundleForSavings = false;
 			} else if (this.order.phone.status === 'unordered') {
 			} else if (this.order.phone.status === 'notAvailable') {
 			} else {
@@ -317,23 +424,39 @@ var app = new Vue({
 			}
 			// Review and signup status
 			if (this.order.internet.status !== 'inProgress' &&
-					this.order.internet.status !== 'inProgress' &&
-					this.order.internet.status !== 'inProgress' &&
+					this.order.cable.status !== 'inProgress' &&
+					this.order.phone.status !== 'inProgress' &&
 					(this.order.internet.status === 'ordered' ||
-					 this.order.internet.status === 'ordered' ||
-					 this.order.internet.status === 'ordered')) {
+					 this.order.cable.status === 'ordered' ||
+					 this.order.phone.status === 'ordered')) {
 				this.state.signupServiceReviewYourRequest = true;
 				this.state.signupServiceSignMeUp = true;
 			}
 		},
-		changeServiceRequestType: function(e) {
+		AvailablePlans: function(plantype) {
+			var cnt = 0;
+			for (var i = 0; i < this.services[plantype].plans.length; i++) {
+				if ((this.services[plantype].plans[i].isavailable === undefined ||
+					this.services[plantype].plans[i].isavailable !== false) &&
+					(this.services[plantype].plans[i][this.order.servicecusttype].isavailable === undefined ||
+					this.services[plantype].plans[i][this.order.servicecusttype].isavailable !== false)
+					)
+					cnt++;
+			}
+			return cnt;
+		},
+		changeServiceRequestCustType: function(e) {
 			var name = e.target.name;
+			var stat = '';
 			// Clear the order or skip if they clicked on an already checked box
-			if (name.toLowerCase() !== this.order.servicetype) {
-				this.order.servicetype = name.toLowerCase();
-				this.order.internet = { 'status': 'unordered' };
-				this.order.cable = { 'status': 'unordered' };
-				this.order.phone = { 'status': 'unordered' };
+			if (name.toLowerCase() !== this.order.servicecusttype) {
+				this.order.servicecusttype = name.toLowerCase().replace('-','');
+				stat = (this.order.internet.status === 'inProgress') ? 'inProgress' : 'unordered';
+				this.order.internet = { 'status': stat, 'plan': undefined, 'options': [] };
+				stat = (this.order.cable.status === 'inProgress') ? 'inProgress' : 'unordered';
+				this.order.cable = { 'status': stat, 'plan': undefined, 'options': [] };
+				stat = (this.order.phone.status === 'inProgress') ? 'inProgress' : 'unordered';
+				this.order.phone = { 'status': stat, 'plan': undefined, 'options': [] };
 			} else {
 				e.preventDefault();
 				return;
@@ -352,8 +475,38 @@ var app = new Vue({
 				this.state.commercialCheckboxField = false;
 				this.state.nonProfitCheckboxField = true;
 			}
+			// Show the default input
+			if (this.state.initialentry === 'internet') {
+				this.ShowInternet();
+			} else if (this.state.initialentry === 'cable') {
+				this.ShowCable();
+			} else if (this.state.initialentry === 'phone') {
+				this.ShowPhone();
+			} else {
+				this.ShowNone();
+			}
 		},
 		
+		getPlanAttribute: function(plan, srvName, attribute) {
+			if (attribute === "residence" || attribute === "commercial" || attribute === "nonprofit")
+				throw "The attribute can not be a service name.";
+			if (plan === undefined)
+				throw "The plan doesn't exist";
+			if (srvName in plan && attribute in plan[srvName])
+				return plan[srvName][attribute];
+			if (attribute in plan)
+				return plan[attribute];
+			return undefined;
+		},
+		
+		selectPlan: function(e) {
+			var ctrl = e.currentTarget;
+			var srvName = ctrl.getAttribute('data-service');
+			var srvPlan = ctrl.getAttribute('data-plan');
+			this.order[srvName].plan = this.services[srvName].plans.filter(p => p.id == srvPlan)[0]; // Num == Str
+			this.order[srvName].status = 'ordered';
+			console.log('DATA-PLAN: ' + srvName + ' ' + this.order[srvName].plan.title);
+		},
 		
 		// Utility functions
 		getUrlParameter: function(name) {
