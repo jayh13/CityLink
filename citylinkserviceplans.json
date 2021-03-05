@@ -144,7 +144,7 @@
 					"items": [
 						{
 							"id": 10,
-							"title": "Item Title 1",
+							"title": "Item Title 11",
 							"desc": "Item Description",
 							"selected": true,
 							"cost": null,
@@ -157,6 +157,7 @@
 								}
 							]
 						}
+					]
 				}
             }
         ],
