@@ -145,15 +145,12 @@
 						{
 							"id": 10,
 							"title": "Item Title 11",
-							"desc": "Item Description",
 							"selected": true,
-							"cost": null,
 							"subitems": [
 								{
 									"id": 1010,
 									"title": "Subitem Title 111",
-									"desc": "Subitem Description 111",
-									"choicetype": "radio"
+									"desc": "Subitem Description 111"
 								}
 							]
 						}
