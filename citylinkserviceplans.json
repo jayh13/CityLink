@@ -140,7 +140,24 @@
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
                 "isavailable": false,
-                "options": {}
+                "options": {
+					"items": [
+						{
+							"id": 10,
+							"title": "Item Title 1",
+							"desc": "Item Description",
+							"selected": true,
+							"cost": null,
+							"subitems": [
+								{
+									"id": 1010,
+									"title": "Subitem Title 111",
+									"desc": "Subitem Description 111",
+									"choicetype": "radio"
+								}
+							]
+						}
+				}
             }
         ],
         "options": {
