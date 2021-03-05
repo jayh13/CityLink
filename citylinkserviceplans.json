@@ -19,7 +19,7 @@
                     "bundledprice": 22
                 },
                 "description": "Perfect for light browsing and managing email.",
-                "options": []
+                "options": {}
             }, {
                 "id": 60,
                 "title": "Connect 60",
@@ -38,7 +38,7 @@
                     "bundledprice": 36
                 },
                 "description": "Excellent for light video streaming, moderate browsing and digital phone service.",
-                "options": []
+                "options": {}
             }, {
                 "id": 100,
                 "title": "Connect 100",
@@ -59,7 +59,7 @@
                     "bundledprice": 56
                 },
                 "description": "Great for moderate streaming and gaming, browsing, and digital phone service.",
-                "options": []
+                "options": {}
             }, {
                 "id": 150,
                 "title": "Connect 150",
@@ -79,7 +79,7 @@
                     "isMostPopular": true
                 },
                 "description": "The best option for those with few internet connected devices.",
-                "options": []
+                "options": {}
             }, {
                 "id": 250,
                 "title": "Connect 250",
@@ -100,7 +100,7 @@
                     "bundledprice": 86
                 },
                 "description": "Optimized for streaming HD and 4K. Great for families with lots of internet connected devices.",
-                "options": []
+                "options": {}
             }, {
                 "id": 500,
                 "title": "Connect 500",
@@ -120,7 +120,7 @@
                     "bundledprice": 96
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
-                "options": []
+                "options": {}
             }, {
                 "id": 501,
                 "title": "Connect 501",
@@ -141,11 +141,59 @@
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
                 "isavailable": false,
-                "options": []
+                "options": {}
             }
         ],
-        "options": [
-
+        "options": {
+			"title": "Hardware and Add-Ons",
+			"desc": "These are optional items you may need or want.",
+			"items": [
+				{
+					"id": 10,
+					"title": "Item Title",
+					"desc": "Item Description",
+					"selected": undefined,
+					"cost": undefined,
+					"subitems": [
+						{
+							"id": 1010,
+							"title": "Subitem Title",
+							"desc": "Subitem Description",
+							"choicetype": "radio"
+						}
+					]
+				},
+				{
+					"id": 20,
+					"title": "Item Title",
+					"desc": "Item Description",
+					"selected": true,
+					"cost": undefined,
+					"subitems": [
+						{
+							"id": 2010,
+							"title": "Subitem Title",
+							"desc": "Subitem Description",
+							"choice": undefined
+						}
+					]
+				},
+				{
+					"id": 30,
+					"title": "Item Title",
+					"desc": "Item Description",
+					"selected": true,
+					"cost": undefined,
+					"subitems": [
+						{
+							"id": 3010,
+							"title": "Subitem Title",
+							"desc": "Subitem Description",
+							"choice": undefined
+						}
+					]
+				}
+			]
         ]
     },
     "cable": {
