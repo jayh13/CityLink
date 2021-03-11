@@ -127,7 +127,23 @@
                 "upload": 25,
                 "residence": {
                     "price": 999,
-                    "bundledprice": 95
+                    "bundledprice": 95,
+					"options": {
+						"items": [
+							{
+								"id": 10,
+								"title": "Item Title 111",
+								"selected": true,
+								"subitems": [
+									{
+										"id": 1010,
+										"title": "Subitem Title 1111",
+										"desc": "Subitem Description 1111"
+									}
+								]
+							}
+						]
+					}
                 },
                 "commercial": {
                     "price": 101,
