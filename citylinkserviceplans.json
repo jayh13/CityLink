@@ -132,14 +132,14 @@
                 "commercial": {
                     "price": 101,
                     "bundledprice": 97,
-                    "isMostPopular": true
+                    "isMostPopular": false
                 },
                 "nonprofit": {
                     "price": 100,
                     "bundledprice": 96
                 },
                 "description": "The ultimate solution for people or families who stream most home entertainment.",
-                "isavailable": false,
+                "isavailable": true,
                 "options": {
 					"items": [
 						{
