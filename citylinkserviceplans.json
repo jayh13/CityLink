@@ -212,7 +212,7 @@
 					"id": 30,
 					"title": "Item Title 3",
 					"desc": "Item Description",
-					"selected": true,
+					"selected": false,
 					"cost": null,
 					"subitems": [
 						{
