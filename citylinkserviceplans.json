@@ -183,7 +183,8 @@
 							"title": "Subitem Title 12",
 							"desc": "Subitem Description",
 							"cost": 10,
-							"choicetype": "radio"
+							"choicetype": "radio",
+							"selected": true
 						},
 						{
 							"id": 1030,
@@ -213,6 +214,7 @@
 							"title": "Subitem Title 31",
 							"desc": "Subitem Description",
 							"cost": 5,
+							"selected": true,
 							"choicetype": "checkbox"
 						},
 						{
@@ -220,6 +222,7 @@
 							"title": "Subitem Title 32",
 							"desc": "Subitem Description",
 							"cost": 10,
+							"selected": true,
 							"choicetype": "checkbox"
 						},
 						{
