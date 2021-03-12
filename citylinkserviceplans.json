@@ -209,7 +209,22 @@
 							"id": 3010,
 							"title": "Subitem Title 31",
 							"desc": "Subitem Description",
-							"choice": null
+							"choicetype": "checkbox"
+						}
+					]
+				},
+				{
+					"id": 40,
+					"title": "Item Title 4",
+					"desc": "Item Description",
+					"selected": false,
+					"cost": null,
+					"subitems": [
+						{
+							"id": 4010,
+							"title": "Subitem Title 41",
+							"desc": "Subitem Description",
+							"choicetype": "select"
 						}
 					]
 				}
