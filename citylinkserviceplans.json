@@ -170,6 +170,7 @@
 					"desc": "Item Description",
 					"selected": null,
 					"cost": 0,
+					"subitemchoicetype": "radio",
 					"subitems": [
 						{
 							"id": 1010,
@@ -208,6 +209,7 @@
 					"desc": "Item Description",
 					"selected": false,
 					"cost": 0,
+					"subitemchoicetype": "checkbox",
 					"subitems": [
 						{
 							"id": 3010,
@@ -240,6 +242,7 @@
 					"desc": "Item Description",
 					"selected": false,
 					"cost": 0,
+					"subitemchoicetype": "select",
 					"subitems": [
 						{
 							"id": 4010,
