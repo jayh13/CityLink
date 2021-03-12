@@ -169,7 +169,7 @@
 					"title": "Item Title 1",
 					"desc": "Item Description",
 					"selected": null,
-					"cost": null,
+					"cost": 0,
 					"subitems": [
 						{
 							"id": 1010,
@@ -206,7 +206,7 @@
 					"title": "Item Title 3",
 					"desc": "Item Description",
 					"selected": false,
-					"cost": null,
+					"cost": 0,
 					"subitems": [
 						{
 							"id": 3010,
@@ -228,7 +228,7 @@
 							"desc": "Subitem Description",
 							"cost": 15,
 							"choicetype": "checkbox"
-						},
+						}
 					]
 				},
 				{
@@ -236,7 +236,7 @@
 					"title": "Item Title 4",
 					"desc": "Item Description",
 					"selected": false,
-					"cost": null,
+					"cost": 0,
 					"subitems": [
 						{
 							"id": 4010,
