@@ -226,7 +226,8 @@
 							"id": 3030,
 							"title": "Subitem Title 33",
 							"desc": "Subitem Description",
-							"cost": 15
+							"cost": 15,
+							"selected": false
 						}
 					]
 				},
@@ -241,8 +242,30 @@
 						{
 							"id": 4010,
 							"title": "Subitem Title 41",
-							"desc": "Subitem Description"
-						}
+							"desc": "Subitem Description",
+							"choices": [
+								{
+									"label": "1 - $10",
+									"cost": 10
+								},
+								{
+									"label": "2 - $20",
+									"cost": 10
+								},
+								{
+									"label": "3 - $30",
+									"cost": 30
+								},
+								{
+									"label": "4 - $40",
+									"cost": 40
+								},
+								{
+									"label": "5 - $50",
+									"cost": 50
+								}
+							]
+						},
 					]
 				}
 			]
