@@ -175,18 +175,21 @@
 							"id": 1010,
 							"title": "Subitem Title 11",
 							"desc": "Subitem Description",
+							"cost": 5,
 							"choicetype": "radio"
 						},
 						{
 							"id": 1020,
 							"title": "Subitem Title 12",
 							"desc": "Subitem Description",
+							"cost": 10,
 							"choicetype": "radio"
 						},
 						{
 							"id": 1030,
 							"title": "Subitem Title 13",
 							"desc": "Subitem Description",
+							"cost": 15,
 							"choicetype": "radio"
 						}
 					]
@@ -209,8 +212,23 @@
 							"id": 3010,
 							"title": "Subitem Title 31",
 							"desc": "Subitem Description",
+							"cost": 5,
 							"choicetype": "checkbox"
-						}
+						},
+						{
+							"id": 3020,
+							"title": "Subitem Title 32",
+							"desc": "Subitem Description",
+							"cost": 10,
+							"choicetype": "checkbox"
+						},
+						{
+							"id": 3030,
+							"title": "Subitem Title 33",
+							"desc": "Subitem Description",
+							"cost": 15,
+							"choicetype": "checkbox"
+						},
 					]
 				},
 				{
