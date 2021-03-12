@@ -245,12 +245,16 @@
 							"desc": "Subitem Description",
 							"choices": [
 								{
+									"label": "SELECT",
+									"cost": 0
+								},
+								{
 									"label": "1 - $10",
 									"cost": 10
 								},
 								{
 									"label": "2 - $20",
-									"cost": 10
+									"cost": 20
 								},
 								{
 									"label": "3 - $30",
