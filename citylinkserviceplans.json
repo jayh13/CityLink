@@ -196,15 +196,7 @@
 					"title": "Item Title 2",
 					"desc": "Item Description",
 					"selected": true,
-					"cost": null,
-					"subitems": [
-						{
-							"id": 2010,
-							"title": "Subitem Title 21",
-							"desc": "Subitem Description",
-							"choice": null
-						}
-					]
+					"cost": 5
 				},
 				{
 					"id": 30,
