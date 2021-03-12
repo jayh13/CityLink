@@ -176,23 +176,20 @@
 							"id": 1010,
 							"title": "Subitem Title 11",
 							"desc": "Subitem Description",
-							"cost": 5,
-							"choicetype": "radio"
+							"cost": 5
 						},
 						{
 							"id": 1020,
 							"title": "Subitem Title 12",
 							"desc": "Subitem Description",
 							"cost": 10,
-							"choicetype": "radio",
 							"selected": true
 						},
 						{
 							"id": 1030,
 							"title": "Subitem Title 13",
 							"desc": "Subitem Description",
-							"cost": 15,
-							"choicetype": "radio"
+							"cost": 15
 						}
 					]
 				},
@@ -216,23 +213,20 @@
 							"title": "Subitem Title 31",
 							"desc": "Subitem Description",
 							"cost": 5,
-							"selected": true,
-							"choicetype": "checkbox"
+							"selected": true
 						},
 						{
 							"id": 3020,
 							"title": "Subitem Title 32",
 							"desc": "Subitem Description",
 							"cost": 10,
-							"selected": true,
-							"choicetype": "checkbox"
+							"selected": true
 						},
 						{
 							"id": 3030,
 							"title": "Subitem Title 33",
 							"desc": "Subitem Description",
-							"cost": 15,
-							"choicetype": "checkbox"
+							"cost": 15
 						}
 					]
 				},
@@ -247,8 +241,7 @@
 						{
 							"id": 4010,
 							"title": "Subitem Title 41",
-							"desc": "Subitem Description",
-							"choicetype": "select"
+							"desc": "Subitem Description"
 						}
 					]
 				}
