@@ -133,14 +133,7 @@
 							{
 								"id": 10,
 								"title": "Item Title 111",
-								"selected": true,
-								"subitems": [
-									{
-										"id": 1010,
-										"title": "Subitem Title 1111",
-										"desc": "Subitem Description 1111"
-									}
-								]
+								"selected": true
 							}
 						]
 					}
@@ -161,14 +154,7 @@
 						{
 							"id": 10,
 							"title": "Item Title 11",
-							"selected": true,
-							"subitems": [
-								{
-									"id": 1010,
-									"title": "Subitem Title 111",
-									"desc": "Subitem Description 111"
-								}
-							]
+							"selected": true
 						}
 					]
 				}
@@ -188,6 +174,18 @@
 						{
 							"id": 1010,
 							"title": "Subitem Title 11",
+							"desc": "Subitem Description",
+							"choicetype": "radio"
+						},
+						{
+							"id": 1020,
+							"title": "Subitem Title 21",
+							"desc": "Subitem Description",
+							"choicetype": "radio"
+						},
+						{
+							"id": 1030,
+							"title": "Subitem Title 31",
 							"desc": "Subitem Description",
 							"choicetype": "radio"
 						}
