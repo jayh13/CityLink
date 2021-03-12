@@ -243,6 +243,7 @@
 							"id": 4010,
 							"title": "Subitem Title 41",
 							"desc": "Subitem Description",
+							"cost": 0,
 							"choices": [
 								{
 									"label": "SELECT",
@@ -274,6 +275,7 @@
 							"id": 4020,
 							"title": "Subitem Title 42",
 							"desc": "Subitem Description",
+							"cost": 0,
 							"choices": [
 								{
 									"label": "SELECT",
