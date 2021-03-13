@@ -197,7 +197,7 @@
 					"id": 20,
 					"title": "Item Title 2",
 					"desc": "Item Description",
-					"selected": true,
+					"selected": false,
 					"cost": 5
 				},
 				{
