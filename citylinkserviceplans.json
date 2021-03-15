@@ -458,23 +458,41 @@
         "plans": [
 			{
                 "id": 20,
-                "title": "Connect 20",
-                "download": 20,
-                "upload": 2,
+                "title": "Talk Local",
+				"bullets": ["Dial long distance with pay per call", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
-                    "price": 25,
-                    "bundledprice": 21
+                    "price": 24.95,
+                    "bundledprice": 20.95
                 },
                 "commercial": {
                     "isavailable": false,
-                    "price": 27,
-                    "bundledprice": 23
+                    "price": 39.95,
+                    "bundledprice": 35.95
                 },
                 "nonprofit": {
-                    "price": 26,
-                    "bundledprice": 22
+                    "price": 24.95,
+                    "bundledprice": 20.95
                 },
-                "description": "Perfect for light browsing and managing email.",
+                "description": "",
+                "options": {}
+            },
+			{
+                "id": 30,
+                "title": "Talk National",
+				"bullets": ["Includes long distance calling", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
+                "residence": {
+                    "price": 39.95,
+                    "bundledprice": 35.95
+                },
+                "commercial": {
+                    "price": 69.95,
+                    "bundledprice": 65.95
+                },
+                "nonprofit": {
+                    "price": 39.95,
+                    "bundledprice": 35.95
+                },
+                "description": "All the benefits of our quality phone service with long distance included.",
                 "options": {}
             }
 		],
