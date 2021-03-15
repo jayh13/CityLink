@@ -14,18 +14,21 @@
                     "price": 40,
                     "bundledprice": 36,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -103,7 +106,7 @@
                 },
                 "nonprofit": {
                     "price": 25,
-                    "bundledprice": 21
+                    "bundledprice": 21,
                     "options": {
                         "items": [{
                                 "id": 30,
@@ -111,12 +114,14 @@
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -208,13 +213,15 @@
                     "price": 60,
                     "bundledprice": 56,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
@@ -299,18 +306,21 @@
                     "price": 39,
                     "bundledprice": 35,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -403,13 +413,15 @@
                     "price": 100,
                     "bundledprice": 96,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
@@ -494,18 +506,21 @@
                     "price": 59,
                     "bundledprice": 55,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -597,18 +612,21 @@
                     "price": 149,
                     "bundledprice": 145,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -689,18 +707,21 @@
                     "bundledprice": 75,
                     "isMostPopular": true,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -793,18 +814,21 @@
                     "bundledprice": 195,
                     "isMostPopular": true,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -884,18 +908,21 @@
                     "price": 89,
                     "bundledprice": 85,
                     "options": {
-                        "items": [{
+                        "items": [
+							{
                                 "id": 30,
                                 "title": "Static IP Address",
                                 "desc": "",
                                 "cost": 0,
                                 "subitemchoicetype": "select",
-                                "subitems": [{
+                                "subitems": [
+									{
                                         "id": 3010,
                                         "title": "Number of fixed IP addresses at $10/mo",
                                         "desc": "",
                                         "cost": "0",
-                                        "choices": [{
+                                        "choices": [
+											{
                                                 "label": "None",
                                                 "cost": "0"
                                             }, {
@@ -1220,7 +1247,8 @@
         "options": {
             "title": "Hardware and Add-Ons",
             "desc": "These are optional items you may need or want.",
-            "items": [{
+            "items": [
+				{
                     "id": 10,
                     "title": "Internet Equipment",
                     "desc": "",
@@ -1259,12 +1287,14 @@
                     "selected": false,
                     "cost": 0,
                     "subitemchoicetype": "select",
-                    "subitems": [{
+                    "subitems": [
+						{
                             "id": 4010,
                             "title": "Subitem Title 41",
                             "desc": "Subitem Description",
                             "cost": "0",
-                            "choices": [{
+                            "choices": [
+								{
                                     "label": "None",
                                     "cost": "0"
                                 }, {
@@ -1333,7 +1363,8 @@
         }
     },
     "cable": {
-        "plans": [{
+        "plans": [
+			{
                 "id": 3,
                 "title": "View Basic",
                 "bullets": ["28 channel selection", "Free installation", "No set-top box required"],
@@ -1345,7 +1376,7 @@
                 "options": {}
             }, {
                 "id": 6,
-                "title": "View Extra", ,
+                "title": "View Extra",
                 "bullets": ["82 channel selection", "Free installation", "No set-top box required"],
                 "price": 84,
                 "isMostPopular": true,
@@ -1356,7 +1387,7 @@
                 "options": {}
             }, {
                 "id": 9,
-                "title": "View Full", ,
+                "title": "View Full",
                 "bullets": ["82 channel selection", "42 additional networks", "Free installation"],
                 "price": 104,
                 "residence": {},
@@ -1366,7 +1397,7 @@
                 "options": {}
             }, {
                 "id": 12,
-                "title": "View HD", ,
+                "title": "View HD",
                 "bullets": ["82 channel selection, 42 networks", "58 additional HD channels", "Cable box required"],
                 "price": 104,
                 "residence": {},
@@ -1627,22 +1658,23 @@
 		}
     },
     "phone": {
-        "plans": [{
+        "plans": [
+			{
                 "id": 20,
                 "title": "Talk Local",
                 "bullets": ["Dial long distance with pay per call", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
                     "price": 24.95,
-                    "bundledprice": 20.95
+                    "bundledprice": 23.70
                 },
                 "commercial": {
                     "isavailable": false,
                     "price": 39.95,
-                    "bundledprice": 35.95
+                    "bundledprice": 37.95
                 },
                 "nonprofit": {
                     "price": 24.95,
-                    "bundledprice": 20.95
+                    "bundledprice": 23.70
                 },
                 "description": "",
                 "options": {}
@@ -1652,20 +1684,43 @@
                 "bullets": ["Includes long distance calling within the lower 48 states", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
                     "price": 39.95,
-                    "bundledprice": 35.95
+                    "bundledprice": 37.95
                 },
                 "commercial": {
                     "price": 69.95,
-                    "bundledprice": 65.95
+                    "bundledprice": 62.65
                 },
                 "nonprofit": {
                     "price": 39.95,
-                    "bundledprice": 35.95
+                    "bundledprice": 37.95
                 },
                 "description": "All the benefits of our quality phone service with long distance to the 48 contiguous USA states.",
                 "options": {}
             }
         ],
-        "options": {}
+        "options": {
+			"title": "Mandatory Fees",
+			"desc": "",
+			"selected": null,
+			"cost": 0,
+			"items": [
+				{
+					"id": 21,
+					"title": "E-911",
+					"desc": "",
+					"selected": true,
+					"cost": 1.99,
+					"required": true
+				},
+				{
+					"id": 22,
+					"title": "USF",
+					"desc": "",
+					"selected": true,
+					"cost": 6.55,
+					"required": true
+				}
+			]
+		}
     }
 }
