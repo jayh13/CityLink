@@ -1258,7 +1258,7 @@
                     "subitems": [
 						{
                             "id": 1010,
-                            "title": "None",
+                            "title": "Buy Your Own",
                             "desc": "You can purchase your own supported cable modem and router.",
                             "cost": 0
                         }, {
@@ -1283,15 +1283,15 @@
 				{
                     "id": 20,
                     "title": "Plume Mesh Networking",
-                    "desc": "For great network performance in every room.",
+                    "desc": "For great WiFi network performance in every room.",
                     "selected": false,
                     "cost": 0,
                     "subitemchoicetype": "select",
                     "subitems": [
 						{
                             "id": 4010,
-                            "title": "Subitem Title 41",
-                            "desc": "Subitem Description",
+                            "title": "SuperPod",
+                            "desc": "Minimum 2 at $5/mo each",
                             "cost": "0",
                             "choices": [
 								{
