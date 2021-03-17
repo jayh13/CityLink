@@ -8,11 +8,11 @@
                 "upload": 2,
                 "residence": {
                     "price": 25,
-                    "bundledprice": 21
+                    "bundledprice": 24
                 },
                 "commercial": {
                     "price": 40,
-                    "bundledprice": 36,
+                    "bundledprice": 38,
                     "options": {
                         "items": [
 							{
@@ -106,7 +106,7 @@
                 },
                 "nonprofit": {
                     "price": 25,
-                    "bundledprice": 21,
+                    "bundledprice": 24,
                     "options": {
                         "items": [{
                                 "id": 30,
@@ -207,11 +207,11 @@
                 "upload": 3,
                 "residence": {
                     "price": 39,
-                    "bundledprice": 35
+                    "bundledprice": 37
                 },
                 "commercial": {
                     "price": 60,
-                    "bundledprice": 56,
+                    "bundledprice": 57,
                     "options": {
                         "items": [
 							{
@@ -304,7 +304,7 @@
                 },
                 "nonprofit": {
                     "price": 39,
-                    "bundledprice": 35,
+                    "bundledprice": 37,
                     "options": {
                         "items": [
 							{
@@ -406,12 +406,12 @@
                 "upload": 5,
                 "residence": {
                     "price": 59,
-                    "bundledprice": 55,
+                    "bundledprice": 56,
                     "isMostPopular": true
                 },
                 "commercial": {
                     "price": 100,
-                    "bundledprice": 96,
+                    "bundledprice": 95,
                     "options": {
                         "items": [
 							{
@@ -504,7 +504,7 @@
                 },
                 "nonprofit": {
                     "price": 59,
-                    "bundledprice": 55,
+                    "bundledprice": 56,
                     "options": {
                         "items": [
 							{
@@ -610,7 +610,7 @@
                 },
                 "commercial": {
                     "price": 149,
-                    "bundledprice": 145,
+                    "bundledprice": 142,
                     "options": {
                         "items": [
 							{
@@ -811,7 +811,7 @@
                 },
                 "commercial": {
                     "price": 199,
-                    "bundledprice": 195,
+                    "bundledprice": 189,
                     "isMostPopular": true,
                     "options": {
                         "items": [
@@ -1008,11 +1008,11 @@
                 "upload": 25,
                 "residence": {
                     "price": 99,
-                    "bundledprice": 95
+                    "bundledprice": 94
                 },
                 "commercial": {
                     "price": 249,
-                    "bundledprice": 245,
+                    "bundledprice": 237,
 					"options" : {
 						"items": [
 							{
@@ -1127,7 +1127,7 @@
                 },
                 "nonprofit": {
                     "price": 99,
-                    "bundledprice": 95,
+                    "bundledprice": 94,
 					"options" : {
 						"items": [
 							{
@@ -1668,18 +1668,18 @@
                 "title": "Talk Local",
                 "bullets": ["Dial long distance with pay per call", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
-                    "price": 24.95,
-                    "bundledprice": 23.70,
+                    "price": 25,
+                    "bundledprice": 24,
 					"isMostPopular": true
                 },
                 "commercial": {
                     "isavailable": false,
-                    "price": 39.95,
-                    "bundledprice": 37.95
+                    "price": 40,
+                    "bundledprice": 38
                 },
                 "nonprofit": {
-                    "price": 24.95,
-                    "bundledprice": 23.70
+                    "price": 25,
+                    "bundledprice": 24
                 },
                 "description": "",
                 "options": {}
@@ -1688,17 +1688,17 @@
                 "title": "Talk National",
                 "bullets": ["Includes long distance calling within the lower 48 states", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
-                    "price": 39.95,
-                    "bundledprice": 37.95
+                    "price": 40,
+                    "bundledprice": 38
                 },
                 "commercial": {
-                    "price": 69.95,
-                    "bundledprice": 62.65,
+                    "price": 70,
+                    "bundledprice": 63,
 					"isMostPopular": true
                 },
                 "nonprofit": {
-                    "price": 39.95,
-                    "bundledprice": 37.95,
+                    "price": 40,
+                    "bundledprice": 38,
 					"isMostPopular": true
                 },
                 "description": "All the benefits of our quality phone service with long distance to the 48 contiguous USA states.",
