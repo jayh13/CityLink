@@ -1669,7 +1669,8 @@
                 "bullets": ["Dial long distance with pay per call", "Includes call waiting, forwarding and voicemail", "Inbound and outbound faxing"],
                 "residence": {
                     "price": 24.95,
-                    "bundledprice": 23.70
+                    "bundledprice": 23.70,
+					"isMostPopular": true
                 },
                 "commercial": {
                     "isavailable": false,
@@ -1692,11 +1693,13 @@
                 },
                 "commercial": {
                     "price": 69.95,
-                    "bundledprice": 62.65
+                    "bundledprice": 62.65,
+					"isMostPopular": true
                 },
                 "nonprofit": {
                     "price": 39.95,
-                    "bundledprice": 37.95
+                    "bundledprice": 37.95,
+					"isMostPopular": true
                 },
                 "description": "All the benefits of our quality phone service with long distance to the 48 contiguous USA states.",
                 "options": {}
