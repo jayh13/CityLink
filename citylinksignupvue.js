@@ -28,6 +28,31 @@ var app = new Vue({
 				'options': []
 			}
 		},
+		'reviewreq': {
+			'total': 0,
+			'lineitems': [
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
+				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 }
+			]
+		},
 		'services': {'internet':{'plans':[]},'cable':{'plans':[]},'phone':{'plans':[]}},
 		'state': {
 			'initialentry': 'internet',
@@ -111,6 +136,8 @@ var app = new Vue({
 		document.querySelector('.service-option-status-selected-cable').style.display = 'block';
 		document.querySelector('.service-option-status-selected-cable').setAttribute('v-show', 'state.serviceOptionStatusSelectedCable');
 		document.querySelector('.service-option-status-cable').setAttribute('v-show', 'state.serviceOptionStatusCable');
+		document.querySelector('.service-option-status-cable > .service-option-status-number').setAttribute('v-html', 'availableCablePlans');
+		document.querySelector('.service-option-status-cable > .service-option-status-plural').setAttribute('v-show', 'availableCablePlans !== 1');
 		// Cable plan selection header
 		document.querySelector('.service-item-intro-cable').setAttribute('v-show', 'state.serviceItemIntroCable');
 		// Cable plan selection area
@@ -126,6 +153,8 @@ var app = new Vue({
 		document.querySelector('.service-option-status-selected-phone').style.display = 'block';
 		document.querySelector('.service-option-status-selected-phone').setAttribute('v-show', 'state.serviceOptionStatusSelectedPhone');
 		document.querySelector('.service-option-status-phone').setAttribute('v-show', 'state.serviceOptionStatusPhone');
+		document.querySelector('.service-option-status-phone > .service-option-status-number').setAttribute('v-html', 'availablePhonePlans');
+		document.querySelector('.service-option-status-phone > .service-option-status-plural').setAttribute('v-show', 'availablePhonePlans !== 1');
 		// Phone plan selection header
 		document.querySelector('.service-item-intro-phone').setAttribute('v-show', 'state.serviceItemIntroPhone');
 		// Phone plan selection area
@@ -196,7 +225,7 @@ var app = new Vue({
 		document.querySelector('.package-select-internet .select-rate-full-cost').setAttribute('v-show', '!isBundled');
 		// Set the amounts
 		document.querySelector('.package-select-internet .select-rate-original-cost .select-rate-amount-figure').setAttribute('v-html', 'order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "price") : "-"');
-		document.querySelector('.package-select-internet .select-rate-bundled-cost .select-rate-amount-figure').setAttribute('v-html', 'order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "bundeledprice") : "-"');
+		document.querySelector('.package-select-internet .select-rate-bundled-cost .select-rate-amount-figure').setAttribute('v-html', 'order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "bundledprice") : "-"');
 		document.querySelector('.package-select-internet .select-rate-full-cost .select-rate-amount-figure').setAttribute('v-html', 'order.internet.plan ? getPlanAttribute(order.internet.plan, order.servicecusttype, "price") : "-"');
 		// Show/hide the bundle icon
 		document.querySelector('.package-select-internet .select-rate-notice').setAttribute('v-show', '!isBundled');
@@ -220,7 +249,7 @@ var app = new Vue({
 		// Set the upgrade plans title, description and upgrade amount
 		lst[0].querySelector('.ps-option-card-title').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "download") + " Mbps"');
 		lst[0].querySelector('.ps-option-card-description').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "description")');
-		lst[0].querySelector('.ps-option-card-button-amount').setAttribute('v-html', 'order.internet.plan == undefined ? "-" : isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundeledprice")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "bundeledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "price")) + " "');
+		lst[0].querySelector('.ps-option-card-button-amount').setAttribute('v-html', 'order.internet.plan == undefined ? "-" : isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundledprice")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "bundledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.internet.plan, order.servicecusttype, "price")) + " "');
 		// Add the upgrade button event handler
 		lst[0].setAttribute('v-on:click', 'selectPlan');
 		// Do the loop to duplicate the first widget for all the upgrade plans
@@ -383,7 +412,7 @@ var app = new Vue({
 		document.querySelector('.package-select-cable .select-rate-full-cost').setAttribute('v-show', '!isBundled');
 		// Set the amounts
 		document.querySelector('.package-select-cable .select-rate-original-cost .select-rate-amount-figure').setAttribute('v-html', 'order.cable.plan ? getPlanAttribute(order.cable.plan, order.servicecusttype, "price") : "-"');
-		document.querySelector('.package-select-cable .select-rate-bundled-cost .select-rate-amount-figure').setAttribute('v-html', 'order.cable.plan ? getPlanAttribute(order.cable.plan, order.servicecusttype, "bundeledprice") : "-"');
+		document.querySelector('.package-select-cable .select-rate-bundled-cost .select-rate-amount-figure').setAttribute('v-html', 'order.cable.plan ? getPlanAttribute(order.cable.plan, order.servicecusttype, "bundledprice") : "-"');
 		document.querySelector('.package-select-cable .select-rate-full-cost .select-rate-amount-figure').setAttribute('v-html', 'order.cable.plan ? getPlanAttribute(order.cable.plan, order.servicecusttype, "price") : "-"');
 		// Show/hide the bundle icon
 		document.querySelector('.package-select-cable .select-rate-notice').setAttribute('v-show', '!isBundled');
@@ -411,9 +440,9 @@ var app = new Vue({
 		// Skip plans that are marked as unavailable
 		lst[0].setAttribute('v-if', 'getPlanAttribute(plan, order.servicecusttype, "isavailable") !== false && order.cable.plan !== undefined && parseInt(getPlanAttribute(order.cable.plan, order.servicecusttype, "id")) < parseInt(getPlanAttribute(plan, order.servicecusttype, "id"))');
 		// Set the upgrade plans title, description and upgrade amount
-		lst[0].querySelector('.ps-option-card-title').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "download") + " Mbps"');
+		lst[0].querySelector('.ps-option-card-title').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "title")');
 		lst[0].querySelector('.ps-option-card-description').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "description")');
-		lst[0].querySelector('.ps-option-card-button-amount').setAttribute('v-html', 'order.cable.plan == undefined ? "-" : isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundeledprice")) - parseInt(getPlanAttribute(order.cable.plan, order.servicecusttype, "bundeledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.cable.plan, order.servicecusttype, "price")) + " "');
+		lst[0].querySelector('.ps-option-card-button-amount').setAttribute('v-html', 'order.cable.plan == undefined ? "-" : (isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundledprice")) - parseInt(getPlanAttribute(order.cable.plan, order.servicecusttype, "bundledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.cable.plan, order.servicecusttype, "price"))) + " "');
 		// Add the upgrade button event handler
 		lst[0].setAttribute('v-on:click', 'selectPlan');
 		// Do the loop to duplicate the first widget for all the upgrade plans
@@ -530,6 +559,214 @@ var app = new Vue({
 		lst[0].setAttribute('v-bind:key', 'itm.id');
 		
 		// === Phone ===
+		// -- Select phone plan list of plans --
+		var lst = document.querySelectorAll('.service-item-options-phone .service-option-item');
+		// Remove all of the plans but the first
+		for (var i = lst.length - 1; i > 0; i--) {
+			lst[i].remove();
+		}
+		// Add data attributes to the remaining plan to be used by Vue.js
+		lst[0].setAttribute('v-bind:data-service', '"phone"');
+		lst[0].setAttribute('v-bind:data-plan', 'plan.id');
+		// Skip plans that are marked as unavailable
+		lst[0].setAttribute('v-if', 'getPlanAttribute(plan, order.servicecusttype, "isavailable") !== false');
+		// Set plan title
+		lst[0].querySelector('.service-option-title').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "title")');
+		
+		// -- Select the feature list items
+		var lst2 = lst[0].querySelectorAll('.service-option-specs-list-item');
+		// Remove all of the features but the first
+		for (var j = lst2.length - 1; j > 0; j--) {
+			lst2[j].remove();
+		}
+		// Add the bullets to the list
+		lst2[0].setAttribute('v-html', 'bullet');
+		lst2[0].setAttribute('v-for', 'bullet in getPlanAttribute(plan, order.servicecusttype, "bullets")');
+		
+		// Set the price and label 
+		lst[0].querySelector('.rate-cost-amount-figure').setAttribute('v-html', 'isBundled ? getPlanAttribute(plan, order.servicecusttype, "bundledprice") : getPlanAttribute(plan, order.servicecusttype, "price")');
+		lst[0].querySelector('.rate-cost-subinfo-details').setAttribute('v-html', 'isBundled ? "Bundled" : "Full Price"');
+		// Show/hide the bundle icon if they have met the bundle requirement
+		lst[0].querySelector('.service-option-rate-notice').setAttribute('v-show', '!isBundled');
+		// Show/hide the most popular plan icon
+		lst[0].querySelector('.service-option-preferred').setAttribute('v-show', 'getPlanAttribute(plan, order.servicecusttype, "isMostPopular")');
+		// Add the event handler
+		lst[0].setAttribute('v-on:click', 'selectPlan');
+		// Do the loop to duplicate the first widget for all the plans
+		lst[0].setAttribute('v-for', 'plan in services.phone.plans');
+		lst[0].setAttribute('v-bind:key', 'plan.id');
+		
+		// -- Phone selected plan area --
+		// Set the title
+		document.querySelector('.package-select-phone .service-select-title').setAttribute('v-html', 'order.phone.plan ? getPlanAttribute(order.phone.plan, order.servicecusttype, "title") : ""');
+		// Show/hide the Original, Bundled and Full price labels
+		document.querySelector('.package-select-phone .select-rate-original-cost').setAttribute('v-show', 'isBundled');
+		document.querySelector('.package-select-phone .select-rate-bundled-cost').setAttribute('v-show', 'isBundled');
+		document.querySelector('.package-select-phone .select-rate-full-cost').setAttribute('v-show', '!isBundled');
+		// Set the amounts
+		document.querySelector('.package-select-phone .select-rate-original-cost .select-rate-amount-figure').setAttribute('v-html', 'order.phone.plan ? getPlanAttribute(order.phone.plan, order.servicecusttype, "price") : "-"');
+		document.querySelector('.package-select-phone .select-rate-bundled-cost .select-rate-amount-figure').setAttribute('v-html', 'order.phone.plan ? getPlanAttribute(order.phone.plan, order.servicecusttype, "bundledprice") : "-"');
+		document.querySelector('.package-select-phone .select-rate-full-cost .select-rate-amount-figure').setAttribute('v-html', 'order.phone.plan ? getPlanAttribute(order.phone.plan, order.servicecusttype, "price") : "-"');
+		// Show/hide the bundle icon
+		document.querySelector('.package-select-phone .select-rate-notice').setAttribute('v-show', '!isBundled');
+		
+		// Select and remove all of the features for the selected plan but the first
+		lst2 = document.querySelectorAll('.package-select-phone .service-select-specs-list-item');
+		for (var j = lst2.length - 1; j > 0; j--) {
+			lst2[j].remove();
+		}
+		// Add the bullets to the list *******************
+		lst2[0].setAttribute('v-html', '(order.phone.plan != undefined && order.phone.plan.bullets != undefined) ? bullet : ""');
+		lst2[0].setAttribute('v-for', 'bullet in order.phone.plan.bullets');
+		
+		// Set the selected plans description -- wrong, do the bullets
+		// document.querySelector('.package-select-phone .service-select-specs-list-item').setAttribute('v-html', 'order.phone.plan ? getPlanAttribute(order.phone.plan, order.servicecusttype, "description") : "-"');
+		
+		// -- Get the upgrade plan widgets and remove all but the first
+		lst = document.querySelectorAll('.package-select-phone .ps-option-item');
+		for (var i = lst.length - 1; i > 0; i--) {
+			lst[i].remove();
+		}
+		// Add data attributes to the upgrade plans to be used by Vue.js
+		lst[0].setAttribute('v-bind:data-service', '"phone"');
+		lst[0].setAttribute('v-bind:data-plan', 'plan.id');
+		// Skip plans that are marked as unavailable
+		lst[0].setAttribute('v-if', 'getPlanAttribute(plan, order.servicecusttype, "isavailable") !== false && order.phone.plan !== undefined && parseInt(getPlanAttribute(order.phone.plan, order.servicecusttype, "id")) < parseInt(getPlanAttribute(plan, order.servicecusttype, "id"))');
+		// Set the upgrade plans title, description and upgrade amount
+		lst[0].querySelector('.ps-option-card-title').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "title")');
+		lst[0].querySelector('.ps-option-card-description').setAttribute('v-html', 'getPlanAttribute(plan, order.servicecusttype, "description")');
+		lst[0].querySelector('.ps-option-card-button-amount').setAttribute('v-html', 'order.phone.plan == undefined ? "-" : (isBundled ? parseInt(getPlanAttribute(plan, order.servicecusttype, "bundledprice")) - parseInt(getPlanAttribute(order.phone.plan, order.servicecusttype, "bundledprice")) : parseInt(getPlanAttribute(plan, order.servicecusttype, "price")) - parseInt(getPlanAttribute(order.phone.plan, order.servicecusttype, "price"))) + " "');
+		// Add the upgrade button event handler
+		lst[0].setAttribute('v-on:click', 'selectPlan');
+		// Do the loop to duplicate the first widget for all the upgrade plans
+		lst[0].setAttribute('v-for', 'plan in services.phone.plans');
+		lst[0].setAttribute('v-bind:key', 'plan.id');
+		
+		// -- Selected plan options --
+		// Set the options title and description
+		document.querySelector('.signup-service-list-phone .ps-equipment-title').setAttribute('v-html', 'order.phone.options == undefined || order.phone.options.title == undefined ? "Options" : order.phone.options.title');
+		document.querySelector('.signup-service-list-phone .ps-equipment-title-note').setAttribute('v-html', 'order.phone.options == undefined || order.phone.options.desc == undefined ? "" : order.phone.options.desc');
+		// Get the list of option widgets and remove all but the first
+		lst = document.querySelectorAll('.signup-service-list-phone .ps-equipment-option-item');
+		for (var i = lst.length - 1; i > 0; i--) {
+			lst[i].remove();
+		}
+		// Get the list of sub-options and remove all but the first
+		lst2 = lst[0].querySelectorAll('.signup-service-list-phone .ps-equipment-option-extras');
+		for (var j = lst2.length - 1; j > 0; j--) {
+			lst2[j].remove();
+		}
+		// -- Options --
+		// Add data attributes to the options to be used by Vue.js
+		lst[0].setAttribute('v-bind:data-item', 'itm.id');
+		// Skip options that are marked as unavailable
+		lst[0].setAttribute('v-if', 'itm.isavailable !== false');
+		// Set the option title and note
+		lst[0].querySelector('.ps-equipment-option-title-label').setAttribute('v-html', 'itm.title == undefined ? "Missing Title" : itm.title');
+		lst[0].querySelector('.ps-equipment-option-title-note').setAttribute('v-html', 'itm.desc == undefined ? "" : itm.desc');
+		// Add data attributes to the option radio button to be used by Vue.js
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:name', '"Item" + itm.id');
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-service', '"phone"');
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-itemid', 'itm.id');
+		// Set or unset the option checked property
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:checked', '(itm.selected == undefined ? false : itm.selected === true ? true : false)');
+		// Add the option event handler
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-on:click','ItemSelectClick');
+		// Don't render the option is there are subitems
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-if', '(itm.subitems == undefined || itm.subitems.length === 0)');
+		// Set the option amount
+		lst[0].querySelector('.ps-equipment-option-amount').setAttribute('v-html', 'itm.cost');
+		
+		// -- Sub options --
+		// Don't render the sub option if there are no sub options
+		lst2[0].setAttribute('v-if', 'itm.subitems != undefined');
+		// Set the sub option title and description
+		lst2[0].querySelector('.ps-equipment-option-extras-title').setAttribute('v-html', 'subitm.title == undefined ? "Missing Title" : subitm.title');
+		lst2[0].querySelector('.ps-equipment-option-title-note').setAttribute('v-html', 'subitm.desc == undefined ? "" : subitm.desc');
+		
+		// -- Sub option select list --
+		// Don't render the select list if the sub options aren't 'select'
+		lst2[0].querySelector('select').setAttribute('v-if', 'itm.subitemchoicetype === "select"');
+		// Give the select object a unique name
+		lst2[0].querySelector('select').setAttribute('v-bind:name', '"SubitemSelect" + itm.id'); // Use the parent id
+		// Add data attributes to the select sub options to be used by Vue.js
+		lst2[0].querySelector('select').setAttribute('v-bind:data-service', '"phone"');
+		lst2[0].querySelector('select').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('select').setAttribute('v-bind:data-subitemid', 'subitm.id');
+		// Add the select sub options event handler
+		lst2[0].querySelector('select').setAttribute('v-on:change','SubItemSelectClick');
+		// Remove all but the first <option> from the <select>
+		var lst3 = lst2[0].querySelectorAll('option');
+		for (var k = lst3.length - 1; k > 0; k--) {
+			lst3[k].remove();
+		}
+		// Set the select options label and value
+		lst3[0].setAttribute('v-html', 'choice.label');
+		lst3[0].setAttribute('v-bind:value', 'choice.cost');
+		// Do the loop to duplicate the first <option> in the <select> for all the choices
+		lst3[0].setAttribute('v-for', 'choice in subitm.choices');
+		lst3[0].setAttribute('v-bind:key', 'choice.label');
+		
+		// -- Sub option radio buttons --
+		// Don't render the radio button if the sub options aren't 'radio'
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio').setAttribute('v-if', 'itm.subitemchoicetype === "radio"');
+		// Set the cost label
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio .w-form-label').setAttribute('v-html', '"$" + subitm.cost + "/mo"');
+		// Give the radio object a unique name
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio').setAttribute('v-bind:name', '"SubitemRadio" + itm.id'); // Use the parent id
+		// Add data attributes to the radio sub options to be used by Vue.js
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-service', '"phone"');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
+		// Set the name to group the radio buttons
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:name', '"SubitemRadioChoice" + itm.id');
+		// Set the default value
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:checked', 'subitm.selected');
+		// Add the radio button sub options event handler
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-on:click','SubItemRadioClick');
+		
+		// -- Sub option checkbox buttons --
+		// Don't render the checkbox if the sub options aren't 'checkbox'
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox').setAttribute('v-if', 'itm.subitemchoicetype === "checkbox"');
+		// Set the cost label
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox .w-form-label').setAttribute('v-html', '"$" + subitm.cost + "/mo"');
+		// Give the checkbox object a unique name
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox').setAttribute('v-bind:name', '"SubitemCheckbox" + itm.id'); // Use the parent id
+		// Add data attributes to the checkbox sub options to be used by Vue.js
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-service', '"phone"');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
+		// Set the checkbox name
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:name', '"SubitemCheckboxChoice" + itm.id');
+		// Set the default value
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-model', 'subitm.selected');
+		// Add the checkbox button sub options event handler
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-on:click','SubItemCheckboxClick');
+		
+		// Do the loop to duplicate the first sub option for all of the sub options 
+		lst2[0].setAttribute('v-for', 'subitm in itm.subitems');
+		lst2[0].setAttribute('v-bind:key', 'subitm.id');
+		
+		// Do the loop to duplicate the first option for all the options
+		lst[0].setAttribute('v-for', 'itm in order.phone.options.items');
+		lst[0].setAttribute('v-bind:key', 'itm.id');
+		
+		// === Review Request ===
+		lst = document.querySelectorAll('.ryr-table-item'); // 20 of them
+		for (var i = 0; i < lst.length; i++) {
+			lst[i].setAttribute('v-show', 'reviewreq.lineitems[' + i + '].serviceitem !== ""');
+			lst[i].querySelector('.ryr-original-cost').setAttribute('v-show', 'isBundled === true');
+			lst[i].querySelector('.ryr-bundled-cost').setAttribute('v-show', 'isBundled === true');
+			lst[i].querySelector('.ryr-actual-cost').setAttribute('v-show', 'isBundled !== true');
+			
+			lst[i].querySelector('.ryr-table-item-label').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].serviceitem');
+			lst[i].querySelector('.ryr-original-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
+			lst[i].querySelector('.ryr-bundled-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].bundledprice');
+			lst[i].querySelector('.ryr-actual-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
+		}
+		document.querySelector('.ryr-footer-total .ryr-total-number').setAttribute('v-html', 'reviewreq.total');
+		// Sign me up
+		
 	},
 	created: function() {
 		// Get the command line parameters
@@ -588,7 +825,7 @@ var app = new Vue({
 				cnt++;
 			if (this.order.phone.status !== 'unordered')
 				cnt++;
-			if (cnt > 1)
+			if (cnt > 2)
 				return true;
 			else
 				return false;
@@ -936,14 +1173,21 @@ var app = new Vue({
 			this.order[srvName].status = 'ordered';
 			console.log('DATA-PLAN: ' + srvName + ' ' + this.order[srvName].plan.title);
 			this.order[srvName].options = this.AvailablePlanOptions(srvName, this.order[srvName].plan, this.order.servicecusttype);
+		
+			this.RefreshReviewRequest();
 		},
 		
 		ItemSelectClick: function(e) {
 			var subitem = e.currentTarget;
 			var servicetype = subitem.getAttribute('data-service');
 			var itemid = subitem.getAttribute('data-itemid');
-			this.order[servicetype].options.items.find(itm => itm.id == itemid).selected = !this.order[servicetype].options.items.find(itm => itm.id == itemid).selected;
+			var selecteditem = this.order[servicetype].options.items.find(itm => itm.id == itemid);
+			if (selecteditem.required === true)
+				selecteditem.selected = true;
+			else
+				selecteditem.selected = !selecteditem.selected;
 			
+			this.RefreshReviewRequest();
 			return false;
 		},
 		
@@ -960,6 +1204,8 @@ var app = new Vue({
 			item.cost = subitms.map(s => parseInt(s.cost)).reduce((prev, next) => prev + next);
 			
 			// this.order[servicetype].options.items.find(itm => itm.id == itemid).cost = parseInt(subitem.value);
+			
+			this.RefreshReviewRequest();
 		},
 		
 		SubItemRadioClick: function(e) {
@@ -968,6 +1214,8 @@ var app = new Vue({
 			var itemid = subitem.getAttribute('data-itemid');
 			var subcost = parseInt(subitem.getAttribute('data-subcost'));
 			this.order[servicetype].options.items.find(itm => itm.id == itemid).cost = subcost;
+			
+			this.RefreshReviewRequest();
 		},
 		
 		SubItemCheckboxClick: function(e) {
@@ -988,6 +1236,60 @@ var app = new Vue({
 			else
 				totcost = totcost - subcost;
 			item.cost = totcost;
+			
+			this.RefreshReviewRequest();
+		},
+		
+		RefreshReviewRequest: function() {
+			var i = 0;
+			var tot = 0;
+			// Add the internet service
+			if (this.order.internet.status === 'ordered') {
+				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "title");
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "bundledprice");
+				i++;
+				// Add the internet service options
+				//for (opt in this.order.internet.options.items) { 
+				// &bull;
+				//}
+			}
+			// Add the cable service
+			if (this.order.cable.status === 'ordered') {
+				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "title");
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "bundledprice");
+				i++;
+				// Add the cable service options
+				
+			}
+			// Add the phone service
+			if (this.order.phone.status === 'ordered') {
+				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "title");
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "bundledprice");
+				i++;
+				// Add the phone service options
+				
+			}
+			
+			
+			
+			for (var j = i; j < this.reviewreq.lineitems.length; j++) {
+				this.reviewreq.lineitems[j].serviceitem = '';
+				this.reviewreq.lineitems[j].price = 0;
+				this.reviewreq.lineitems[j].bundledprice = 0;
+			}
+			if (this.isBundled) {
+				for (var k = 0; k < this.reviewreq.lineitems.length; k++) {
+					tot = tot + this.reviewreq.lineitems[k].bundledprice;
+				}
+			} else {
+				for (var k = 0; k < this.reviewreq.lineitems.length; k++) {
+					tot = tot + this.reviewreq.lineitems[k].price;
+				}
+			}
+			this.reviewreq.total = tot;
 		},
 		
 		// Utility functions
