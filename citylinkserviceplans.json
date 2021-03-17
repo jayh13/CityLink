@@ -1427,7 +1427,7 @@
 							"id": 3110,
 							"title": "DTA - Digital Transport Adaptor",
 							"desc": "at $1.99/mo",
-							"cost": "0",
+							"cost": "1.99",
 							"choices": [
 								{
 									"label": "None",
@@ -1435,7 +1435,8 @@
 								},
 								{
 									"label": "1 for $1.99/mo",
-									"cost": "1.99"
+									"cost": "1.99",
+									"selected": true
 								},
 								{
 									"label": "2 for 3.98/mo",
