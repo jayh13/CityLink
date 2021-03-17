@@ -1635,19 +1635,19 @@
 							"id": 3220,
 							"title": "Cinemax",
 							"desc": "Includes Cinemax, More Max, Action Max and Thriller Max",
-							"cost": 18
+							"cost": 15
 						},
 						{
 							"id": 3230,
 							"title": "Starz/Encore",
 							"desc": "Includes Starz HD, Starz, Starz Edge, Starz Kids & Family, Starz Cinema, Starz Comedy, Starz Encore, Starz Encore Westerns, Starz Encore Classic, Starz Encode Action, Starz Encore Suspense, Starz Encore Black and Starz Encore Family",
-							"cost": 18
+							"cost": 15
 						},
 						{
 							"id": 3240,
 							"title": "Showtime",
 							"desc": "Includes Showtime, Showtime 2, Showtime Showcase, Showtime Family, Showtime Extreme, Showtime Next, Showtime Women, The Movie Channel, Movie Channel Xtra and Flix",
-							"cost": 18
+							"cost": 15
 						}
 					]
 				},
