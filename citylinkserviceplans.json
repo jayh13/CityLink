@@ -1425,8 +1425,8 @@
 					"subitems": [
 						{
 							"id": 3110,
-							"title": "DTA - Digital Transport Adaptor at $1.99/mo",
-							"desc": "",
+							"title": "DTA - Digital Transport Adaptor",
+							"desc": "at $1.99/mo",
 							"cost": "0",
 							"choices": [
 								{
@@ -1438,7 +1438,7 @@
 									"cost": "1.99"
 								},
 								{
-									"label": "2 - 3.98/mo",
+									"label": "2 for 3.98/mo",
 									"cost": "3.98"
 								},
 								{
@@ -1457,8 +1457,8 @@
 						},
 						{
 							"id": 3120,
-							"title": "Premium / HD Digital Box at $9/mo",
-							"desc": "",
+							"title": "Premium / HD Digital Box",
+							"desc": "at $9/mo",
 							"cost": "0",
 							"choices": [
 								{
@@ -1489,8 +1489,8 @@
 						},
 						{
 							"id": 3130,
-							"title": "Digital Video Recorder at $16/mo",
-							"desc": "",
+							"title": "Digital Video Recorder",
+							"desc": "at $16/mo",
 							"cost": "0",
 							"choices": [
 								{
@@ -1521,8 +1521,8 @@
 						},
 						{
 							"id": 3140,
-							"title": "TiVo at $18/mo",
-							"desc": "",
+							"title": "TiVo",
+							"desc": "at $18/mo",
 							"cost": "0",
 							"choices": [
 								{
@@ -1553,8 +1553,8 @@
 						},
 						{
 							"id": 3150,
-							"title": "TiVo Mini at $6/mo",
-							"desc": "",
+							"title": "TiVo Mini",
+							"desc": "at $6/mo",
 							"cost": "0",
 							"choices": [
 								{
@@ -1585,8 +1585,8 @@
 						},
 						{
 							"id": 3160,
-							"title": "Wireless G Module at $3/mo",
-							"desc": "",
+							"title": "Wireless G Module",
+							"desc": "at $3/mo",
 							"cost": "0",
 							"choices": [
 								{
