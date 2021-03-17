@@ -1656,6 +1656,7 @@
 					"title": "NFL Red Zone HD",
 					"desc": "$11/mo for 6 months<br />Only available in the Digital Plus Tier",
 					"selected": false,
+					"disabled": true,
 					"cost": 11
 				}
 			]
