@@ -31,29 +31,29 @@ var app = new Vue({
 		'reviewreq': {
 			'total': 0,
 			'lineitems': [
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 },
-				{ 'serviceitem': '', 'price': 0, 'bundledprice': 0 }
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false },
+				{ 'serviceitem': '', 'price': 0, 'origprice': 0, 'isLineBundled': false }
 			]
 		},
-		'services': {'internet':{'plans':[]},'cable':{'plans':[]},'phone':{'plans':[]}},
+		'services': {'internet':{'plans':[]},'cable':{'plans':[{'bullets':[]}]},'phone':{'plans':[{'bullets':[]}]}},
 		'state': {
 			'initialentry': 'internet',
 			'residenceCheckboxField': false,
@@ -275,6 +275,7 @@ var app = new Vue({
 		lst[0].setAttribute('v-bind:data-item', 'itm.id');
 		// Skip options that are marked as unavailable
 		lst[0].setAttribute('v-if', 'itm.isavailable !== false');
+		lst[0].setAttribute('v-bind:style','{ opacity: (itm.disabled == true ? 0.5 : 1) }');
 		// Set the option title and note
 		lst[0].querySelector('.ps-equipment-option-title-label').setAttribute('v-html', 'itm.title == undefined ? "Missing Title" : itm.title');
 		lst[0].querySelector('.ps-equipment-option-title-note').setAttribute('v-html','itm.desc == undefined ? "" : itm.desc');
@@ -283,6 +284,7 @@ var app = new Vue({
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-service', '"internet"');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-itemid', 'itm.id');
 		// Set or unset the option checked property
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:disabled', 'itm.disabled == true');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:checked', '(itm.selected == undefined ? false : itm.selected === true ? true : false)');
 		// Add the option event handler
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-on:click','ItemSelectClick');
@@ -317,6 +319,7 @@ var app = new Vue({
 		// Set the select options label and value
 		lst3[0].setAttribute('v-html', 'choice.label');
 		lst3[0].setAttribute('v-bind:value', 'choice.cost');
+		lst3[0].setAttribute('v-bind:selected', 'choice.selected');
 		// Do the loop to duplicate the first <option> in the <select> for all the choices
 		lst3[0].setAttribute('v-for', 'choice in subitm.choices');
 		lst3[0].setAttribute('v-bind:key', 'choice.label');
@@ -331,6 +334,7 @@ var app = new Vue({
 		// Add data attributes to the radio sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-service', '"internet"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the name to group the radio buttons
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:name', '"SubitemRadioChoice" + itm.id');
@@ -349,6 +353,7 @@ var app = new Vue({
 		// Add data attributes to the checkbox sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-service', '"internet"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the checkbox name
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:name', '"SubitemCheckboxChoice" + itm.id');
@@ -468,6 +473,7 @@ var app = new Vue({
 		lst[0].setAttribute('v-bind:data-item', 'itm.id');
 		// Skip options that are marked as unavailable
 		lst[0].setAttribute('v-if', 'itm.isavailable !== false');
+		lst[0].setAttribute('v-bind:style','{ opacity: (itm.disabled == true ? 0.5 : 1) }');
 		// Set the option title and note
 		lst[0].querySelector('.ps-equipment-option-title-label').setAttribute('v-html', 'itm.title == undefined ? "Missing Title" : itm.title');
 		lst[0].querySelector('.ps-equipment-option-title-note').setAttribute('v-html', 'itm.desc == undefined ? "" : itm.desc');
@@ -476,6 +482,7 @@ var app = new Vue({
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-service', '"cable"');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-itemid', 'itm.id');
 		// Set or unset the option checked property
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:disabled', 'itm.disabled == true');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:checked', '(itm.selected == undefined ? false : itm.selected === true ? true : false)');
 		// Add the option event handler
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-on:click','ItemSelectClick');
@@ -510,6 +517,7 @@ var app = new Vue({
 		// Set the select options label and value
 		lst3[0].setAttribute('v-html', 'choice.label');
 		lst3[0].setAttribute('v-bind:value', 'choice.cost');
+		lst3[0].setAttribute('v-bind:selected', 'choice.selected');
 		// Do the loop to duplicate the first <option> in the <select> for all the choices
 		lst3[0].setAttribute('v-for', 'choice in subitm.choices');
 		lst3[0].setAttribute('v-bind:key', 'choice.label');
@@ -524,6 +532,7 @@ var app = new Vue({
 		// Add data attributes to the radio sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-service', '"cable"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the name to group the radio buttons
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:name', '"SubitemRadioChoice" + itm.id');
@@ -542,6 +551,7 @@ var app = new Vue({
 		// Add data attributes to the checkbox sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-service', '"cable"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the checkbox name
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:name', '"SubitemCheckboxChoice" + itm.id');
@@ -661,6 +671,7 @@ var app = new Vue({
 		lst[0].setAttribute('v-bind:data-item', 'itm.id');
 		// Skip options that are marked as unavailable
 		lst[0].setAttribute('v-if', 'itm.isavailable !== false');
+		lst[0].setAttribute('v-bind:style','{ opacity: (itm.disabled == true ? 0.5 : 1) }');
 		// Set the option title and note
 		lst[0].querySelector('.ps-equipment-option-title-label').setAttribute('v-html', 'itm.title == undefined ? "Missing Title" : itm.title');
 		lst[0].querySelector('.ps-equipment-option-title-note').setAttribute('v-html', 'itm.desc == undefined ? "" : itm.desc');
@@ -669,6 +680,7 @@ var app = new Vue({
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-service', '"phone"');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:data-itemid', 'itm.id');
 		// Set or unset the option checked property
+		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:disabled', 'itm.disabled == true');
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-bind:checked', '(itm.selected == undefined ? false : itm.selected === true ? true : false)');
 		// Add the option event handler
 		lst[0].querySelector('.ps-equipment-option-select input').setAttribute('v-on:click','ItemSelectClick');
@@ -703,6 +715,7 @@ var app = new Vue({
 		// Set the select options label and value
 		lst3[0].setAttribute('v-html', 'choice.label');
 		lst3[0].setAttribute('v-bind:value', 'choice.cost');
+		lst3[0].setAttribute('v-bind:selected', 'choice.selected');
 		// Do the loop to duplicate the first <option> in the <select> for all the choices
 		lst3[0].setAttribute('v-for', 'choice in subitm.choices');
 		lst3[0].setAttribute('v-bind:key', 'choice.label');
@@ -717,6 +730,7 @@ var app = new Vue({
 		// Add data attributes to the radio sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-service', '"phone"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the name to group the radio buttons
 		lst2[0].querySelector('.ps-equipment-option-extras-item-radio input[type="radio"]').setAttribute('v-bind:name', '"SubitemRadioChoice" + itm.id');
@@ -735,6 +749,7 @@ var app = new Vue({
 		// Add data attributes to the checkbox sub options to be used by Vue.js
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-service', '"phone"');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-itemid', 'itm.id');
+		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subitemid', 'subitm.id');
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:data-subcost', 'subitm.cost');
 		// Set the checkbox name
 		lst2[0].querySelector('.ps-equipment-option-extras-item-checkbox input[type="checkbox"]').setAttribute('v-bind:name', '"SubitemCheckboxChoice" + itm.id');
@@ -755,13 +770,13 @@ var app = new Vue({
 		lst = document.querySelectorAll('.ryr-table-item'); // 20 of them
 		for (var i = 0; i < lst.length; i++) {
 			lst[i].setAttribute('v-show', 'reviewreq.lineitems[' + i + '].serviceitem !== ""');
-			lst[i].querySelector('.ryr-original-cost').setAttribute('v-show', 'isBundled === true');
-			lst[i].querySelector('.ryr-bundled-cost').setAttribute('v-show', 'isBundled === true');
-			lst[i].querySelector('.ryr-actual-cost').setAttribute('v-show', 'isBundled !== true');
+			lst[i].querySelector('.ryr-original-cost').setAttribute('v-show', 'reviewreq.lineitems[' + i + '].isLineBundled === true');
+			lst[i].querySelector('.ryr-bundled-cost').setAttribute('v-show', 'reviewreq.lineitems[' + i + '].isLineBundled === true');
+			lst[i].querySelector('.ryr-actual-cost').setAttribute('v-show', 'reviewreq.lineitems[' + i + '].isLineBundled !== true');
 			
 			lst[i].querySelector('.ryr-table-item-label').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].serviceitem');
-			lst[i].querySelector('.ryr-original-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
-			lst[i].querySelector('.ryr-bundled-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].bundledprice');
+			lst[i].querySelector('.ryr-original-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].origprice');
+			lst[i].querySelector('.ryr-bundled-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
 			lst[i].querySelector('.ryr-actual-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
 		}
 		document.querySelector('.ryr-footer-total .ryr-total-number').setAttribute('v-html', 'reviewreq.total');
@@ -980,7 +995,8 @@ var app = new Vue({
 				for (var i = 0; i < this.services[plantype].plans.length; i++) {
 					if ((this.services[plantype].plans[i].isavailable == undefined ||
 						this.services[plantype].plans[i].isavailable !== false) &&
-						(this.services[plantype].plans[i][this.order.servicecusttype].isavailable == undefined ||
+						(this.services[plantype].plans[i][this.order.servicecusttype] == undefined ||
+						this.services[plantype].plans[i][this.order.servicecusttype].isavailable == undefined ||
 						this.services[plantype].plans[i][this.order.servicecusttype].isavailable !== false)
 						) {
 						cnt++;
@@ -1001,14 +1017,20 @@ var app = new Vue({
 			}
 		},
 		AvailablePlanOptions: function(plantype, plan, custtype) {
+			// Get the customer type specific options (services.internet.plan.commercial.options)
 			var options1 = plan[custtype] && plan[custtype].options ? plan[custtype].options : undefined;
+			// Get the selected plan options (services.internet.plan.options)
 			var options2 = plan && plan.options ? plan.options : undefined;
+			// Get the base level service options (services.internet.options)
 			var options3 = this.services[plantype] && this.services[plantype].options ? this.services[plantype].options : undefined;
+			// Start with an empty default
 			var options = { "title": "", "desc": "", "items": [] };
+			// Merge the base level options with the default
 			if (options3) {
 				// Update everything in options (currently empty) with options3
 				this.UpdateObject(options, options3, []);
 			}
+			// Merge in the plan specific options
 			if (options2 && 'items' in options2) {
 				// Update any properties other than items
 				this.UpdateObject(options, options2, ['items']);
@@ -1044,6 +1066,7 @@ var app = new Vue({
 					options.items = options.items.sort((a, b) => { parseInt(a.id) - parseInt(b.id); });
 				}
 			}
+			// Merge in the customer type specific options
 			if (options1 && 'items' in options1) {
 				// Update any properties other than items
 				this.UpdateObject(options, options1, ['items']);
@@ -1081,24 +1104,34 @@ var app = new Vue({
 			for (var i = 0; i < options.items.length; i++) {
 				var itm = options.items[i];
 				if (itm.subitemchoicetype === 'select') {
-					
+					// Initialize the parent to the sum of selected subitem costs
+					var subitms = itm.subitems.filter(s => s.cost > 0);
+					if (subitms == undefined || subitms.length === 0)
+						itm.cost = 0;
+					else
+						itm.cost = subitms.map(s => parseInt(s.cost)).reduce((prev, next) => prev + next);
 				} else if (itm.subitemchoicetype === 'radio') {
 					for (var j = 0; j < itm.subitems.length; j++) {
+						// If the radio selected property isn't defined then default it to false
 						if (itm.subitems[j].selected == undefined)
 							itm.subitems[j].selected = false;
 					}
+					// Initialize the parent to the first selected subitem cost
 					var subitms = itm.subitems.filter(s => s.selected);
 					if (subitms.length > 0) {
 						itm.cost = subitms[0].cost;
 					}
+					// Make sure only one is selected
 					for (var j = 1; j < subitms.length; j++) {
 						subitms[j].selected = false; // Fix issue if multiple are selected
 					}
 				} else if (itm.subitemchoicetype === 'checkbox') {
 					for (var j = 0; j < itm.subitems.length; j++) {
+						// If the radio selected property isn't defined then default it to false
 						if (itm.subitems[j].selected == undefined)
 							itm.subitems[j].selected = false;
 					}
+					// Initialize the parent to the sum of selected subitem costs
 					var subitms = itm.subitems.filter(s => s.selected === true);
 					if (subitms == undefined || subitms.length === 0)
 						itm.cost = 0;
@@ -1108,6 +1141,24 @@ var app = new Vue({
 					itm.subitems = undefined;
 				}
 			}
+			
+			// Special cases
+			if (plantype === 'internet') {
+				
+			}
+			if (plantype === 'cable') {
+				// Red zone isn't available below View Full
+				if (plan.id < 9) {
+					options.items.find(itm => itm.id === 33).disabled = true;
+				} else {
+					options.items.find(itm => itm.id === 33).disabled = false;
+				}
+			}
+			if (plantype === 'phone') {
+				
+			}
+			
+			
 			return options;
 		},
 		changeServiceRequestCustType: function(e) {
@@ -1119,9 +1170,9 @@ var app = new Vue({
 				stat = (this.order.internet.status === 'inProgress') ? 'inProgress' : 'unordered';
 				this.order.internet = { 'status': stat, 'plan': undefined, 'options': [] };
 				stat = (this.order.cable.status === 'inProgress') ? 'inProgress' : 'unordered';
-				this.order.cable = { 'status': stat, 'plan': undefined, 'options': [] };
+				this.order.cable = { 'status': stat, 'plan': { 'bullets': [] }, 'options': [] };
 				stat = (this.order.phone.status === 'inProgress') ? 'inProgress' : 'unordered';
-				this.order.phone = { 'status': stat, 'plan': undefined, 'options': [] };
+				this.order.phone = { 'status': stat, 'plan': { 'bullets': [] }, 'options': [] };
 			} else {
 				e.preventDefault();
 				return;
@@ -1199,6 +1250,8 @@ var app = new Vue({
 			var item = this.order[servicetype].options.items.find(itm => itm.id == itemid);
 			var ordersubitem = item.subitems.find(subitm => subitm.id == subitemid);
 			ordersubitem.cost = parseInt(subitem.value);
+			ordersubitem.costdesc = subitem.selectedOptions[0].text;
+			
 			var subitms = item.subitems;
 			// console.log(subitem.value, subitem.getAttribute('data-cost'));
 			item.cost = subitms.map(s => parseInt(s.cost)).reduce((prev, next) => prev + next);
@@ -1209,6 +1262,9 @@ var app = new Vue({
 		},
 		
 		SubItemRadioClick: function(e) {
+			// NOTE: UNTESTED SINCE THE CURRENT DATA DOESN'T USE RADIO BUTTONS
+			//       Look at the SubItemCheckboxClick handler for ideas on potential issues with
+			//       the selected property in the model not being updated till after this runs
 			var subitem = e.currentTarget;
 			var servicetype = subitem.getAttribute('data-service');
 			var itemid = subitem.getAttribute('data-itemid');
@@ -1222,73 +1278,247 @@ var app = new Vue({
 			var subitem = e.currentTarget;
 			var servicetype = subitem.getAttribute('data-service');
 			var itemid = subitem.getAttribute('data-itemid');
+			var subitemid = subitem.getAttribute('data-subitemid');
 			var subcost = parseInt(subitem.getAttribute('data-subcost'));
-			var item = this.order[servicetype].options.items.find(itm => itm.id == itemid);
-			var subitms = item.subitems.filter(subitm => subitm.selected === true);
+			var itm = this.order[servicetype].options.items.find(it => it.id == itemid);
+			
+			// Even though the model is bound it wont update till after this eventhandler so do it by hand
+			var subitm = itm.subitems.find(subit => subit.id == subitemid);
+			subitm.selected = subitem.checked;
+			
+			// Calc the total cost of the subitems
+			var subitms = itm.subitems.filter(subitm => subitm.selected === true);
 			var totcost = 0;
 			if (subitms.length === 0)
 				totcost = 0;
-			else
+			else {
 				totcost = subitms.map(s => s.cost).reduce((prev, next) => prev + next);
-			// Model isn't updated till after the eventhandler runs
-			if (subitem.checked)
-				totcost = totcost + subcost;
-			else
-				totcost = totcost - subcost;
-			item.cost = totcost;
+				
+				// Handle a special case for 'Digital Premium Multiplexes' bundle pricing
+				if (itm.title === 'Digital Premium Multiplexes') {
+					if (subitms.length === 2)
+						totcost = 29;
+					else if (subitms.length === 3)
+						totcost = 39;
+					else if (subitms.length === 4)
+						totcost = 49;
+				}
+			}
+			itm.cost = totcost;
 			
 			this.RefreshReviewRequest();
+			return false;
 		},
 		
 		RefreshReviewRequest: function() {
 			var i = 0;
 			var tot = 0;
-			// Add the internet service
+			// === Add the internet service ===
 			if (this.order.internet.status === 'ordered') {
-				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "title");
-				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "price");
-				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "bundledprice");
+				// The plan
+				this.reviewreq.lineitems[i].serviceitem = '<strong>CityLink ' + this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "title") + ' Internet Service</strong>';
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "bundledprice");
+				this.reviewreq.lineitems[i].origprice = this.getPlanAttribute(this.order.internet.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].isLineBundled = this.isBundled;
 				i++;
+				
 				// Add the internet service options
-				//for (opt in this.order.internet.options.items) { 
-				// &bull;
-				//}
+				for (var j = 0; j < this.order.internet.options.items.length; j++) {
+					var itm = this.order.internet.options.items[j];
+					var showitem = false;
+					var svcitem = itm.title;
+					var svccost = itm.cost;
+					var svcorigcost = '';
+					var svcsubitemtype = itm.subitemchoicetype;
+					var svcsubitems = '';
+					var showbundle = false;
+					if (itm.selected === true && svcsubitemtype == undefined) {
+						// Top level with no subitems to show
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'select') {
+						// Append the select list items
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.cost > 0) {
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+							}
+						}
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'radio') {
+						// There are no radio's for the internet
+					}
+					else if (svccost > 0 && svcsubitemtype === 'checkbox') {
+						// Append the checkbox list items
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.selected) {
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+							}
+						}
+						showitem = true;
+					}
+					else if (svccost === 0 && svcitem === 'Internet Equipment' && svcsubitemtype === 'checkbox') {
+						// One off for buy your own equipment
+						var subitm = itm.subitems[0];
+						svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title;
+						showitem = true;
+					}
+					
+					// Add the item to the request summary list
+					if (showitem) {
+						this.reviewreq.lineitems[i].serviceitem = '<strong>' + svcitem + '</strong>' + svcsubitems;
+						this.reviewreq.lineitems[i].price = svccost;
+						this.reviewreq.lineitems[i].origprice = svcorigcost;
+						this.reviewreq.lineitems[i].isLineBundled = showbundle;
+						i++;
+					}
+				}
 			}
-			// Add the cable service
+
+			// === Add the cable service ===
 			if (this.order.cable.status === 'ordered') {
-				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "title");
-				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "price");
-				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "bundledprice");
+				this.reviewreq.lineitems[i].serviceitem = '<strong>CityLink ' + this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "title") + ' Cable TV Service</strong>';
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "bundledprice");
+				this.reviewreq.lineitems[i].origprice = this.getPlanAttribute(this.order.cable.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].isLineBundled = this.isBundled;
 				i++;
+				
 				// Add the cable service options
-				
+				for (var j = 0; j < this.order.cable.options.items.length; j++) {
+					var itm = this.order.cable.options.items[j];
+					var showitem = false;
+					var svcitem = itm.title;
+					var svccost = itm.cost;
+					var svcorigcost = '';
+					var svcsubitemtype = itm.subitemchoicetype;
+					var svcsubitems = '';
+					var showbundle = false;
+					if (itm.selected === true && svcsubitemtype == undefined) {
+						// Top level with no subitems to show
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'select') {
+						// Append the select list items
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.cost > 0) {
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+							}
+						}
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'radio') {
+						// There are no radio's for cable
+					}
+					else if (svccost > 0 && svcsubitemtype === 'checkbox') {
+						// Append the checkbox list items
+						var cnt = 0;
+						var origcost = 0;
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.selected) {
+								cnt++;
+								origcost += subitm.cost;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+							}
+						}
+						
+						// Handle a special case
+						if (svcitem === 'Digital Premium Multiplexes') {
+							svcorigcost = origcost;
+							svccost = svccost;
+							showbundle = true;
+						}
+						showitem = true;
+					}
+					
+					// Add the item to the request summary list
+					if (showitem) {
+						this.reviewreq.lineitems[i].serviceitem = '<strong>' + svcitem + '</strong>' + svcsubitems;
+						this.reviewreq.lineitems[i].price = svccost;
+						this.reviewreq.lineitems[i].origprice = svcorigcost;
+						this.reviewreq.lineitems[i].isLineBundled = showbundle;
+						i++;
+					}
+				}
 			}
-			// Add the phone service
+			
+			// === Add the phone service ===
 			if (this.order.phone.status === 'ordered') {
-				this.reviewreq.lineitems[i].serviceitem = 'CityLink ' + this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "title");
-				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "price");
-				this.reviewreq.lineitems[i].bundledprice = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "bundledprice");
+				this.reviewreq.lineitems[i].serviceitem = '<strong>CityLink ' + this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "title") + ' Phone Service</strong>';
+				this.reviewreq.lineitems[i].price = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "bundledprice");
+				this.reviewreq.lineitems[i].origprice = this.getPlanAttribute(this.order.phone.plan, this.order.servicecusttype, "price");
+				this.reviewreq.lineitems[i].isLineBundled = this.isBundled;
 				i++;
-				// Add the phone service options
 				
+				// Add the phone service options
+				for (var j = 0; j < this.order.phone.options.items.length; j++) {
+					var itm = this.order.phone.options.items[j];
+					var showitem = false;
+					var svcitem = itm.title;
+					var svccost = itm.cost;
+					var svcorigcost = '';
+					var svcsubitemtype = itm.subitemchoicetype;
+					var svcsubitems = '';
+					var showbundle = false;
+					if (itm.selected === true && svcsubitemtype == undefined) {
+						// Top level with no subitems to show
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'select') {
+						// Append the select list items
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.cost > 0) {
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+							}
+						}
+						showitem = true;
+					}
+					else if (svccost > 0 && svcsubitemtype === 'radio') {
+						// There are no radio's for phone
+					}
+					else if (svccost > 0 && svcsubitemtype === 'checkbox') {
+						// Append the checkbox list items
+						for (var k = 0; k < itm.subitems.length; k++) {
+							var subitm = itm.subitems[k];
+							if (subitm.selected) {
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+							}
+						}
+						showitem = true;
+					}
+					
+					// Add the item to the request summary list
+					if (showitem) {
+						this.reviewreq.lineitems[i].serviceitem = '<strong>' + svcitem + '</strong>' + svcsubitems;
+						this.reviewreq.lineitems[i].price = svccost;
+						this.reviewreq.lineitems[i].origprice = svcorigcost;
+						this.reviewreq.lineitems[i].isLineBundled = showbundle;
+						i++;
+					}
+				}
 			}
 			
-			
-			
+			// Clear out any left over data
 			for (var j = i; j < this.reviewreq.lineitems.length; j++) {
 				this.reviewreq.lineitems[j].serviceitem = '';
 				this.reviewreq.lineitems[j].price = 0;
-				this.reviewreq.lineitems[j].bundledprice = 0;
+				this.reviewreq.lineitems[j].origprice = 0;
 			}
-			if (this.isBundled) {
-				for (var k = 0; k < this.reviewreq.lineitems.length; k++) {
-					tot = tot + this.reviewreq.lineitems[k].bundledprice;
-				}
-			} else {
+			
+			//if (this.isBundled) {
+			//	for (var k = 0; k < this.reviewreq.lineitems.length; k++) {
+			//		tot = tot + this.reviewreq.lineitems[k].origprice;
+			//	}
+			//} else {
 				for (var k = 0; k < this.reviewreq.lineitems.length; k++) {
 					tot = tot + this.reviewreq.lineitems[k].price;
 				}
-			}
+			//}
+			
 			this.reviewreq.total = tot;
 		},
 		
