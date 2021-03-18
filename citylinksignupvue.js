@@ -1535,7 +1535,7 @@ var app = new Vue({
 				}
 			//}
 			
-			this.reviewreq.total = tot;
+			this.reviewreq.total = tot.toFixed(2);
 		},
 		
 		// Utility functions
