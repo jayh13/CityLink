@@ -781,8 +781,14 @@ var app = new Vue({
 			lst[i].querySelector('.ryr-actual-cost .ryr-cost-number').setAttribute('v-html', 'reviewreq.lineitems[' + i + '].price');
 		}
 		document.querySelector('.ryr-footer-total .ryr-total-number').setAttribute('v-html', 'reviewreq.total');
-		// Sign me up
 		
+		// Sign me up
+		document.querySelector('.smu-content-trigger').setAttribute('v-on:click','state.smuContentForm = !state.smuContentForm');
+		document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
+		document.querySelector('#last-name').setAttribute('v-model', 'order.lastname');
+		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
+		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
+		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
 	},
 	created: function() {
 		// Get the command line parameters
@@ -1357,7 +1363,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1370,7 +1376,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.selected) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						showitem = true;
@@ -1378,7 +1384,7 @@ var app = new Vue({
 					else if (svccost === 0 && svcitem === 'Internet Equipment' && svcsubitemtype === 'checkbox') {
 						// One off for buy your own equipment
 						var subitm = itm.subitems[0];
-						svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title;
+						svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title;
 						showitem = true;
 					}
 					
@@ -1420,7 +1426,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1437,7 +1443,7 @@ var app = new Vue({
 							if (subitm.selected) {
 								cnt++;
 								origcost += subitm.cost;
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						
@@ -1488,7 +1494,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1501,7 +1507,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.selected) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9205;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						showitem = true;
