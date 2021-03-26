@@ -786,9 +786,10 @@ var app = new Vue({
 		document.querySelector('.smu-content-trigger').setAttribute('v-on:click','state.smuContentForm = !state.smuContentForm');
 		document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
 		document.querySelector('#last-name').setAttribute('v-model', 'order.lastname');
-		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
-		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
-		// document.querySelector('#first-name').setAttribute('v-model', 'order.firstname');
+		document.querySelector('#email').setAttribute('v-model', 'order.email');
+		document.querySelector('#phone').setAttribute('v-model', 'order.phonenumber');
+		document.querySelector('#utility-number').setAttribute('v-model', 'order.utilitynumber');
+		document.querySelector('.signup-content-submit-button').setAttribute('v-on:click','SignUpClickHandler');
 	},
 	created: function() {
 		// Get the command line parameters
@@ -827,14 +828,14 @@ var app = new Vue({
 		axios
 			.get('https://jayh13.github.io/CityLink/citylinkserviceplans.json')
 			.then(response => {
-				var x = response.data;
-				if (typeof x === 'string') {
+				var resp = response.data;
+				if (typeof resp === 'string') {
 					// It should be type object so there is probably a parsing error and parsing it 
 					// is the best way to find out what the error is
-					console.log(x);
-					this.services = JSON.parse(x);
+					console.log(resp);
+					this.services = JSON.parse(resp);
 				} else {
-					this.services = x;
+					this.services = resp;
 				}
 			});
 	},
@@ -863,6 +864,26 @@ var app = new Vue({
 		},
 	},
 	methods: {
+		SignUpClickHandler: function() {
+			axios.put('https://api.wadsworth-citylink.webflow.io/SignupRequest', this.order)
+				.then(response => {
+					console.log(response);
+					var msg = document.querySelector('.w-form-done');
+					msg.style.display = 'block';
+					setTimeout(() => {
+						msg.style.display = 'none'
+					}, 20000);
+				})
+				.catch(e => {
+					console.log(e);
+					var msg = document.querySelector('.w-form-fail');
+					msg.style.display = 'block';
+					setTimeout(() => {
+						msg.style.display = 'none'
+					}, 20000);
+				})
+		},
+		
 		ShowInternet: function() {
 			this.order.internet.status = 'inProgress';
 			if (this.order.cable.status !== 'ordered')
@@ -1363,7 +1384,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1376,7 +1397,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.selected) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						showitem = true;
@@ -1384,7 +1405,7 @@ var app = new Vue({
 					else if (svccost === 0 && svcitem === 'Internet Equipment' && svcsubitemtype === 'checkbox') {
 						// One off for buy your own equipment
 						var subitm = itm.subitems[0];
-						svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title;
+						svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title;
 						showitem = true;
 					}
 					
@@ -1426,7 +1447,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1443,7 +1464,7 @@ var app = new Vue({
 							if (subitm.selected) {
 								cnt++;
 								origcost += subitm.cost;
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						
@@ -1494,7 +1515,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.cost > 0) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ', ' + subitm.costdesc;
 							}
 						}
 						showitem = true;
@@ -1507,7 +1528,7 @@ var app = new Vue({
 						for (var k = 0; k < itm.subitems.length; k++) {
 							var subitm = itm.subitems[k];
 							if (subitm.selected) {
-								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#9658;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
+								svcsubitems = svcsubitems + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&#11208;&nbsp;' + subitm.title + ' at $' + subitm.cost + '/mo';
 							}
 						}
 						showitem = true;
