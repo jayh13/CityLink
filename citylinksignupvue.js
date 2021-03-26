@@ -865,7 +865,7 @@ var app = new Vue({
 	},
 	methods: {
 		SignUpClickHandler: function() {
-			axios.put('https://api.wadsworth-citylink.webflow.io/SignupRequest', this.order)
+			axios.put('https://wadsworth-citylinkapi.webflow.io/SignupRequest', this.order)
 				.then(response => {
 					console.log(response);
 					var msg = document.querySelector('.w-form-done');
